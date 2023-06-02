@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.actionOther:
                         viewPager.setCurrentItem(3);
                         break;
-
                 }
                 return true;
 

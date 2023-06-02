@@ -1,14 +1,14 @@
 package com.thuctap.NOID.Database;
 
 public class DBUser {
-    String email, hoten, tendangnhap, matkhau, phanquyen;
+    String email, name, password, address, phone;
 
-    public DBUser(String email, String hoten, String tendangnhap, String matkhau, String phanquyen) {
+    public DBUser(String email, String name, String password, String address, String phone) {
         this.email = email;
-        this.hoten = hoten;
-        this.tendangnhap = tendangnhap;
-        this.matkhau = matkhau;
-        this.phanquyen = phanquyen;
+        this.name = name;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -19,36 +19,36 @@ public class DBUser {
         this.email = email;
     }
 
-    public String getHoten() {
-        return hoten;
+    public String getName() {
+        return name;
     }
 
-    public void setHoten(String hoten) {
-        this.hoten = hoten;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTendangnhap() {
-        return tendangnhap;
+    public String getPassword() {
+        return password;
     }
 
-    public void setTendangnhap(String tendangnhap) {
-        this.tendangnhap = tendangnhap;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getMatkhau() {
-        return matkhau;
+    public String getAddress() {
+        return address;
     }
 
-    public void setMatkhau(String matkhau) {
-        this.matkhau = matkhau;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getPhanquyen() {
-        return phanquyen;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhanquyen(String phanquyen) {
-        this.phanquyen = phanquyen;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public DBUser() {

@@ -33,21 +33,22 @@
                 android:textAlignment="center"
                 android:textColor="#333E48"
                 android:textSize="28dp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold" />
-            <!-- Tên đăng nhập -->
+            <!-- Email -->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputUsername"
+                android:id="@+id/txtInputEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:hint="Tên đăng nhập"
-                app:startIconDrawable="@drawable/ic_username">
+                android:hint=" Email"
+                app:startIconDrawable="@drawable/ic_mail">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/loginUsername"
+                    android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="65dp" />
             </com.google.android.material.textfield.TextInputLayout>

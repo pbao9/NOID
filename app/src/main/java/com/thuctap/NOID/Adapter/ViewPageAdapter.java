@@ -13,7 +13,6 @@ import com.thuctap.NOID.Fragment.StoreFragment;
 
 public class ViewPageAdapter extends FragmentStatePagerAdapter {
 
-
     public ViewPageAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
