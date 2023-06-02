@@ -185,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
                         String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
                         String usernameFromDB = snapshot.child(userUsername).child("tendangnhap").getValue(String.class);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công! Chào mừng " + nameFromDB, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công! " + "\n" + "Chào mừng " + nameFromDB, Toast.LENGTH_SHORT).show();
                         intent.putExtra("hoten", nameFromDB);
                         intent.putExtra("email", emailFromDB);
                         intent.putExtra("tendangnhap", usernameFromDB);
