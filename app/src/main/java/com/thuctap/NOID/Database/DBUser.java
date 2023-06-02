@@ -1,4 +1,4 @@
-package com.thuctap.NOID;
+package com.thuctap.NOID.Database;
 
 public class DBUser {
     String email, hoten, tendangnhap, matkhau, phanquyen;

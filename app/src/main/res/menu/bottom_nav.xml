@@ -9,7 +9,7 @@
         android:title="Đặt hàng"
         android:icon="@drawable/ic_order"/>
     <item
-        android:id="@+id/actionShop"
+        android:id="@+id/actionStore"
         android:title="Cửa hàng"
         android:icon="@drawable/ic_store"/>
     <item

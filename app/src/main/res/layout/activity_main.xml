@@ -7,7 +7,11 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_above="@id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <!-- Start Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

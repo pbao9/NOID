@@ -1,4 +1,4 @@
-package com.thuctap.NOID;
+package com.thuctap.NOID.LogReg;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.thuctap.NOID.Database.DBUser;
+import com.thuctap.NOID.R;
 
 public class RegisterActivity extends AppCompatActivity {
     /* Authentication */
