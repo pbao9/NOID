@@ -52,5 +52,35 @@ public class MainActivity extends AppCompatActivity {
     private void setUpViewPage() {
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPageAdapter);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        bottomNavMenu.getMenu().findItem(R.id.actionHome).setChecked(true);
+                        break;
+                    case 1:
+                        bottomNavMenu.getMenu().findItem(R.id.actionOrder).setChecked(true);
+                        break;
+                    case 2:
+                        bottomNavMenu.getMenu().findItem(R.id.actionStore).setChecked(true);
+                        break;
+                    case 3:
+                        bottomNavMenu.getMenu().findItem(R.id.actionOther).setChecked(true);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }
