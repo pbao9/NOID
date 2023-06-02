@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "155036475454",
+    "firebase_url": "https://noidapp221-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "noidapp221",
+    "storage_bucket": "noidapp221.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155036475454:android:05293040b70e8062d7716f",
+        "android_client_info": {
+          "package_name": "com.thuctap.NOID"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbAkQo9WclreFDBJ3zIaG_oGxhRCYv30c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
