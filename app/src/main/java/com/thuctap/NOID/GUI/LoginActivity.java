@@ -1,4 +1,4 @@
-package com.thuctap.NOID.LogReg;
+package com.thuctap.NOID.GUI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -26,7 +26,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.MainActivity;
 import com.thuctap.NOID.R;
@@ -61,13 +60,12 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 /* Kiểm tra Email cửa hàng */
-                 else if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                else if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     if (!password.isEmpty()) {
                         auth.signInWithEmailAndPassword(email, password)
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
-                                        FirebaseUser user = auth.getCurrentUser();
                                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                         finish();

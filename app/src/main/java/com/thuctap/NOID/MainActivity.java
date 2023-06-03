@@ -1,19 +1,27 @@
 package com.thuctap.NOID;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.thuctap.NOID.Adapter.ViewPageAdapter;
+import com.thuctap.NOID.GUI.Home;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavMenu;
     private ViewPager viewPager;
+    private Button btnLogin;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         /* Ánh xạ view */
         bottomNavMenu = findViewById(R.id.bottom_nav);
         viewPager = findViewById(R.id.viewPager);
+
         setUpViewPage();
         /* Sự kiện Menu bottom Nav */
         bottomNavMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.actionHome:
                         viewPager.setCurrentItem(0);
-                        break;
+//                        startActivity(new Intent(getApplicationContext(), Home.class));
+//                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.actionOrder:
                         viewPager.setCurrentItem(1);
                         break;
@@ -47,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
         /* Kết thúc sự kiện Menu bottom Nav */
     }
+
 
     /* Chuyển đổi các trang với nhau Trang Chủ - Đặt hàng - Cửa hàng - Khác */
     private void setUpViewPage() {

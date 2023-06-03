@@ -12,31 +12,33 @@
         android:theme="@style/Theme.NOID"
         tools:targetApi="31">
         <activity
-            android:name=".Page.Home"
+            android:name=".GUI.Home"
             android:exported="false" />
         <activity
-            android:name=".LogReg.SplashActivity"
+            android:name=".GUI.SplashActivity"
             android:exported="true">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".LogReg.LoginActivity"
+            android:name=".GUI.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".LogReg.RegisterActivity"
+            android:name=".GUI.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

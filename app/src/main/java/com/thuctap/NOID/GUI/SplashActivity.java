@@ -1,4 +1,4 @@
-package com.thuctap.NOID.LogReg;
+package com.thuctap.NOID.GUI;
 
 import androidx.appcompat.app.AppCompatActivity;
 

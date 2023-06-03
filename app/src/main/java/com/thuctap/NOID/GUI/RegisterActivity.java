@@ -1,4 +1,4 @@
-package com.thuctap.NOID.LogReg;
+package com.thuctap.NOID.GUI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +20,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.Database.DBUser;
 import com.thuctap.NOID.R;

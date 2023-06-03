@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LogReg.RegisterActivity">
+    tools:context=".GUI.RegisterActivity">
     <!--Background-->
     <LinearLayout
         android:layout_width="wrap_content"
@@ -135,9 +135,5 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <!--Background-->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/wave_bottom" />
 
 </LinearLayout>

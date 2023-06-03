@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Page.Home">
+    tools:context=".GUI.Home">
     <!-- Hiển thị tên người dùng đăng nhập -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,67 +21,63 @@
 
     </LinearLayout>
     <!-- Đăng nhập & Đăng kí -->
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewLogin"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:gravity="center">
-        <!--  CardView Đăng nhập đăng kí -->
-        <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:visibility="visible"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp">
+
+        <!-- Nội dung -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="5dp">
+            android:orientation="vertical">
 
-            <!-- Nội dung -->
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="Đăng nhập"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="Đăng nhập"
-                    android:textColor="@color/black"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:text="Vui lòng đăng nhập tài khoản trước khi đặt hàng!"
+                android:textColor="#807F7F"
+                android:textSize="14dp"
+                android:textStyle="" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center"
-                    android:text="Vui lòng đăng nhập tài khoản trước khi đặt hàng!"
-                    android:textColor="#807F7F"
-                    android:textSize="14dp"
-                    android:textStyle="" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="Để đặt hàng gửi đến tay bạn nhanh nhất."
+                android:textColor="#807F7F"
+                android:textSize="14dp"
+                android:textStyle="" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:gravity="center"
-                    android:text="Để đặt hàng gửi đến tay bạn nhanh nhất."
-                    android:textColor="#807F7F"
-                    android:textSize="14dp"
-                    android:textStyle="" />
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/lightgreen"
+                android:text="Đăng Nhập" />
+        </LinearLayout>
 
-                <Button
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/lightgreen"
-                    android:text="Đăng Nhập" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -190,34 +186,38 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:scrollbars="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -227,39 +227,44 @@
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
             <!---->
             <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -269,39 +274,44 @@
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
             <!---->
             <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -311,39 +321,44 @@
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
             <!---->
             <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -353,15 +368,17 @@
                     android:layout_margin="12dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:src="@drawable/banner"
                             android:layout_width="150dp"
-                            android:layout_height="150dp"/>
+                            android:layout_height="150dp"
+                            android:src="@drawable/banner" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
