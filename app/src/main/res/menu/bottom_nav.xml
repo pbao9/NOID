@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/actionOrder"
-        android:title="Đặt hàng"
+        android:title="Giỏ hàng"
         android:icon="@drawable/ic_order"/>
     <item
-        android:id="@+id/actionStore"
-        android:title="Cửa hàng"
-        android:icon="@drawable/ic_store"/>
+        android:id="@+id/actionHistory"
+        android:title="Hoạt động"
+        android:icon="@drawable/ic_history"/>
     <item
         android:id="@+id/actionOther"
         android:title="Khác"

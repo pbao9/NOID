@@ -6,6 +6,9 @@ plugins {
 android {
     namespace 'com.thuctap.NOID'
     compileSdk 33
+    dataBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.thuctap.NOID"

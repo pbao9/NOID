@@ -1,20 +1,19 @@
-package com.thuctap.NOID.GUI;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+package com.thuctap.NOID.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,40 +21,48 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.thuctap.NOID.Adapter.ViewPageAdapter;
 import com.thuctap.NOID.GUI.LoginActivity;
 import com.thuctap.NOID.R;
 
-public class Home extends AppCompatActivity {
+public class TrangChuFragment extends Fragment {
+
     private CardView cardViewLogin;
     private Button btnLogin;
     private TextView txtUsername;
     private FirebaseAuth auth;
     private DatabaseReference reference;
-
+    private LinearLayout lln1, lln2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_home);
-        /* Ánh xạ */
-        cardViewLogin = findViewById(R.id.cardViewLogin);
-        txtUsername = findViewById(R.id.txtUsername);
-//        btnLogin = findViewById(R.id.btnLogin);
+    public void onCreate(Bundle savedInstanceState) {
 
-        /* Sự kiện Menu bottom Nav */
-        /* Authentication */
-        auth = FirebaseAuth.getInstance();
-        reference = FirebaseDatabase.getInstance().getReference();
+
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_trang_chu, container, false);
+        /* Ánh xạ */
+        cardViewLogin = view.findViewById(R.id.cardViewLogin);
+        txtUsername = view.findViewById(R.id.txtUsername);
+        btnLogin = view.findViewById(R.id.btnLogin);
+        lln1 = view.findViewById(R.id.lln1);
+        lln2 = view.findViewById(R.id.lln2);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                startActivity(new Intent(requireContext(), LoginActivity.class));
             }
         });
-
+        /* Sự kiện Menu bottom Nav */
+        /* Authentication */
+        auth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
+
+
         if (currentUser != null) {
             String userId = currentUser.getUid();
             /* Hiển thị tên người dùng */
@@ -64,19 +71,21 @@ public class Home extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String userName = snapshot.getValue(String.class);
                     if (userName != null) {
-                        txtUsername.setText("Chào bạn " + userName + ", chúc bạn có 1 ngày tốt lành!");
+                        txtUsername.setText("Chào " + userName);
+                        lln1.setVisibility(View.GONE);
+                        lln2.setVisibility(View.VISIBLE);
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(Home.this, "", Toast.LENGTH_SHORT).show();
+
                 }
             });
-            /* Cardview đăng nhập ẩn */
-//            cardViewLogin.setVisibility(View.GONE);
         } else {
-            cardViewLogin.setVisibility(View.VISIBLE);
+            lln1.setVisibility(View.VISIBLE);
+            lln2.setVisibility(View.GONE);
         }
+        return view;
     }
 }

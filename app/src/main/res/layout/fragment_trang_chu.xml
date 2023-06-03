@@ -5,79 +5,122 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GUI.Home">
-    <!-- Hiển thị tên người dùng đăng nhập -->
+    tools:context=".Fragment.TrangChuFragment">
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/txtUsername"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/green">
+        <!-- Đăng nhập & Đăng kí -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Chào bạn mới"
-            android:textColor="@color/black" />
+            android:layout_margin="12dp"
+            android:visibility="visible"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="5dp">
+
+            <!-- Nội dung khi người dùng chưa đăng nhập -->
+            <LinearLayout
+                android:id="@+id/lln1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="Đăng nhập"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="Vui lòng đăng nhập tài khoản trước khi đặt hàng!"
+                    android:textColor="#807F7F"
+                    android:textSize="14dp"
+                    android:textStyle="" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="Để đặt hàng gửi đến tay bạn nhanh nhất."
+                    android:textColor="#807F7F"
+                    android:textSize="14dp"
+                    android:textStyle="" />
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/lightgreen"
+                    android:text="Đăng Nhập/ Đăng Ký" />
+            </LinearLayout>
+
+
+            <!-- Nội dung khi người dùng đã đăng nhập -->
+            <LinearLayout
+                android:id="@+id/lln2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txtUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="left"
+                    android:text="Tên người dùng"
+                    android:textColor="#3E3C3C"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="Chúc bạn có phút giây thưởng thức đồ cúng tuyệt vời ^^"
+                    android:textColor="#807F7F"
+                    android:textSize="14dp"
+                    android:textStyle="" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="Nhanh tay đặt hàng nhận hòm nhanh chóng"
+                    android:textColor="#807F7F"
+                    android:textSize="14dp"
+                    android:textStyle="" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
     </LinearLayout>
-    <!-- Đăng nhập & Đăng kí -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:visibility="visible"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="5dp">
 
-        <!-- Nội dung -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:text="Đăng nhập"
-                android:textColor="@color/black"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:gravity="center"
-                android:text="Vui lòng đăng nhập tài khoản trước khi đặt hàng!"
-                android:textColor="#807F7F"
-                android:textSize="14dp"
-                android:textStyle="" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:gravity="center"
-                android:text="Để đặt hàng gửi đến tay bạn nhanh nhất."
-                android:textColor="#807F7F"
-                android:textSize="14dp"
-                android:textStyle="" />
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/lightgreen"
-                android:text="Đăng Nhập" />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -384,6 +427,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>

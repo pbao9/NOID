@@ -9,7 +9,7 @@
     <!--Background-->
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="230dp"
+        android:layout_height="190dp"
         android:background="@drawable/wave_signin_top" />
 
     <androidx.cardview.widget.CardView
@@ -86,7 +86,7 @@
                     android:layout_marginEnd="25dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#a2e1db"
+                    android:background="@drawable/button_rounded"
                     android:text="Đăng Nhập"
                     app:cornerRadius="10dp" />
 
@@ -94,26 +94,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:gravity="right"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtRegAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="165dp"
-                        android:text="Đăng ký" />
+                        android:layout_marginStart="140dp"
+                        android:textColor="@color/teal_700"
+                        android:textStyle="bold"
+                        android:text="Tạo tài khoản" />
                     <TextView
                         android:id="@+id/txtForgotPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginRight="5dp"
                         android:text="Quên mật khẩu?" />
-
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <!--Background-->
     <LinearLayout
         android:layout_width="wrap_content"

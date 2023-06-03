@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.Database.DBUser;
+import com.thuctap.NOID.MainActivity;
 import com.thuctap.NOID.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private TextInputEditText edtEmail, edtPassword, edtPhone;
     private Button btnSignUp;
-    private TextView txtSignIn;
+    private TextView txtSignIn, txtContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,45 +60,46 @@ public class RegisterActivity extends AppCompatActivity {
                 reference.orderByChild("phone").equalTo(phone).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
+                        if (phone.isEmpty()) {
+                            edtPhone.setError("Số điện thoại không được để trống!");
+                        }
+                        if (email.isEmpty()) {
+                            edtEmail.setError("Email không được để trống!");
+                        }
+                        if (password.isEmpty()) {
+                            edtPassword.setError("Mật khẩu không được để trống");
+                        } else if (snapshot.exists()) {
                             /* Trường hợp số điện thoại đã tồn tại */
                             Toast.makeText(RegisterActivity.this, "Số điện thoại này đã tồn tại!", Toast.LENGTH_SHORT).show();
                             edtPhone.setText(" ");
+                            /* Kiểm tra email đã tồn tại hoặc bị trùng với email cửa hàng */
+                        } else if (email.equals("kylekhanh1028@gmail.com")) {
+                            Toast.makeText(RegisterActivity.this, "Địa chỉ email hoặc tên đăng nhập không được cho phép!", Toast.LENGTH_SHORT).show();
+                            return;
                         } else {
-                            /* Trường hợp số điện thoại chưa được đăng kí */
-                            /* Kiểm tra Email & Tên đăng nhập cửa hàng */
-                            if (email.equals("kylekhanh1028@gmail.com")) {
-                                Toast.makeText(RegisterActivity.this, "Địa chỉ email hoặc tên đăng nhập không được cho phép!", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            if (email.isEmpty()) {
-                                edtEmail.setError("Email không được để trống!");
-                            }
-                            if (password.isEmpty()) {
-                                edtPassword.setError("Mật khẩu không được để trống");
-                            } else {
-                                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                        if (task.isSuccessful()) {
-                                            /* Thêm */
-                                            FirebaseUser user = auth.getCurrentUser();
-                                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("taikhoan");
-                                            DBUser dbUser = new DBUser(email, name, password, address, phone);
-                                            /* Khởi tạo biến UserID để lấy userID add vào Realtime DB */
-                                            String userID = user.getUid();
-                                            reference.child(userID).setValue(dbUser);
-                                            Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                        } else {
-                                            Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thất bại. Kiểm tra lại!", Toast.LENGTH_SHORT).show();
-                                        }
+                                    if (task.isSuccessful()) {
+                                        /* Thêm */
+                                        FirebaseUser user = auth.getCurrentUser();
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("taikhoan");
+                                        DBUser dbUser = new DBUser(email, name, password, address, phone);
+                                        /* Khởi tạo biến UserID để lấy userID add vào Realtime DB */
+                                        String userID = user.getUid();
+                                        reference.child(userID).setValue(dbUser);
+                                        Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
+                                        auth.getInstance().signOut();
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thất bại. Kiểm tra lại!", Toast.LENGTH_SHORT).show();
                                     }
-                                });
-                            }
+                                }
+                            });
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -114,6 +116,14 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
+
+        txtContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.getInstance().signOut();
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+            }
+        });
         /* Kết thúc TextView đăng nhập */
     }
 
@@ -124,5 +134,6 @@ public class RegisterActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
         txtSignIn = findViewById(R.id.txtSignIn);
+        txtContinue = findViewById(R.id.txtContinue);
     }
 }

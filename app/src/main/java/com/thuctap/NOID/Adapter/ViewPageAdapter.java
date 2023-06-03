@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.thuctap.NOID.Fragment.HomeFragment;
-import com.thuctap.NOID.Fragment.OrderFragment;
-import com.thuctap.NOID.Fragment.OtherFragment;
-import com.thuctap.NOID.Fragment.StoreFragment;
+import com.thuctap.NOID.Fragment.DatHangFragment;
+import com.thuctap.NOID.Fragment.HoatDongFragment;
+import com.thuctap.NOID.Fragment.KhacFragment;
+import com.thuctap.NOID.Fragment.TrangChuFragment;
 
 
 public class ViewPageAdapter extends FragmentStatePagerAdapter {
@@ -22,15 +22,15 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new HomeFragment();
+                return new TrangChuFragment();
             case 1:
-                return new OrderFragment();
+                return new DatHangFragment();
             case 2:
-                return new StoreFragment();
+                return new HoatDongFragment();
             case 3:
-                return new OtherFragment();
+                return new KhacFragment();
             default:
-                return new HomeFragment();
+                return new TrangChuFragment();
         }
     }
 
