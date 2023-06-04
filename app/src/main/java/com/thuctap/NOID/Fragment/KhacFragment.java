@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,19 +21,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thuctap.NOID.GUI.Infomation;
 import com.thuctap.NOID.GUI.LoginActivity;
+import com.thuctap.NOID.GUI.SplashActivity;
 import com.thuctap.NOID.MainActivity;
 import com.thuctap.NOID.R;
 
 public class KhacFragment extends Fragment {
     private Button btnSignOut;
+    private TextView txtUsername, txtLogout, txtLogin, txtProfile, txtSetting, txtTienIch;
     private FirebaseAuth auth;
+    private LinearLayout llnTienIch;
     private DatabaseReference reference;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -42,17 +47,13 @@ public class KhacFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
-
-
-        btnSignOut = view.findViewById(R.id.btnSignOut);
-
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(requireContext(), MainActivity.class));
-            }
-        });
+        txtUsername = view.findViewById(R.id.txtUsername);
+        txtLogout = view.findViewById(R.id.txtLogout);
+        txtLogin = view.findViewById(R.id.txtLogin);
+        txtProfile = view.findViewById(R.id.txtProfile);
+        txtSetting = view.findViewById(R.id.txtSetting);
+        llnTienIch = view.findViewById(R.id.llnTienIch);
+        txtTienIch = view.findViewById(R.id.txtTienIch);
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -62,7 +63,8 @@ public class KhacFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String userName = snapshot.getValue(String.class);
                     if (userName != null) {
-                        btnSignOut.setVisibility(View.VISIBLE);
+                        txtUsername.setText(userName + " | THÀNH VIÊN");
+                        txtLogin.setVisibility(View.GONE);
                     }
                 }
 
@@ -72,8 +74,39 @@ public class KhacFragment extends Fragment {
                 }
             });
         } else {
-            btnSignOut.setVisibility(View.GONE);
+            txtUsername.setTextSize(15);
+            txtLogout.setVisibility(View.GONE);
+            txtProfile.setVisibility(View.GONE);
+            txtSetting.setVisibility(View.GONE);
+            llnTienIch.setVisibility(View.GONE);
+            txtLogin.setVisibility(View.VISIBLE);
+            txtTienIch.setVisibility(View.GONE);
+            txtUsername.setText("Vui lòng đăng nhập để có trải nghiệm tốt nhất!");
         }
+
+        txtLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(requireContext(), "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(requireContext(), SplashActivity.class));
+            }
+        });
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireContext(), LoginActivity.class));
+            }
+        });
+
+        txtProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireContext(), Infomation.class));
+            }
+        });
+
         return view;
     }
 }

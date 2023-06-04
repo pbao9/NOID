@@ -21,6 +21,9 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window window = getWindow();
+        window.setBackgroundDrawableResource(R.drawable.statusbar_gradient);
+
         setContentView(R.layout.activity_splash);
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference();

@@ -64,12 +64,15 @@
 
                 <Button
                     android:id="@+id/btnLogin"
+                    android:textAllCaps="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    app:cardCornerRadius="20dp"
+                    android:textColor="@color/white"
                     android:backgroundTint="@color/lightgreen"
-                    android:text="Đăng Nhập/ Đăng Ký" />
+                    android:text="Đăng Nhập / Đăng Ký" />
             </LinearLayout>
 
 
@@ -120,8 +123,6 @@
 
 
     </LinearLayout>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="170dp"

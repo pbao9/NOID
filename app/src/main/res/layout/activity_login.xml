@@ -8,9 +8,32 @@
     tools:context=".GUI.LoginActivity">
     <!--Background-->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:background="@drawable/wave_signin_top" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/wave_signin_top">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:fontFamily="@font/brawler"
+            android:text="NOID"
+            android:textColor="@color/black"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/damion"
+            android:text="Coffee - Tea - Juice"
+            android:textSize="15dp"
+            android:textStyle="italic" />
+
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
@@ -62,7 +85,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:hint="Mật khẩu"
-                app:startIconDrawable="@drawable/ic_password">
+                app:startIconDrawable="@drawable/ic_password"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/loginPassword"
@@ -78,6 +102,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:textAllCaps="false"
                     android:id="@+id/btnSignIn"
                     android:layout_width="292dp"
                     android:layout_height="50dp"
@@ -101,7 +126,6 @@
                         android:id="@+id/txtRegAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="140dp"
                         android:textColor="@color/teal_700"
                         android:textStyle="bold"
                         android:text="Tạo tài khoản" />
@@ -109,8 +133,8 @@
                         android:id="@+id/txtForgotPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="2dp"
                         android:text="Quên mật khẩu?" />
                 </LinearLayout>
             </LinearLayout>

@@ -12,12 +12,15 @@
         android:theme="@style/Theme.NOID"
         tools:targetApi="31">
         <activity
+            android:name=".GUI.Infomation"
+            android:exported="false" />
+        <activity
             android:name=".GUI.Home"
             android:exported="false" />
         <activity
-            android:theme="@style/Theme.Corn"
             android:name=".GUI.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Corn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +37,6 @@
             android:name=".MainActivity"
             android:exported="false">
 
-
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
 
@@ -42,6 +44,10 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

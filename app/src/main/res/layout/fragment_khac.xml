@@ -4,21 +4,146 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".Fragment.KhacFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FRAGMENT KHÁC" />
-    <Button
-        android:id="@+id/btnSignOut"
-        android:text="Đăng xuất"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:background="@drawable/statusbar_gradient"
+        android:elevation="15dp">
 
+        <ImageView
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:src="@drawable/logo" />
+        <TextView
+            android:id="@+id/txtUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên khách hàng | THÀNH VIÊN"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- Tài khoản -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            android:text="Tài khoản"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:background="@drawable/linearlayout_rounded">
+            <TextView
+                android:id="@+id/txtProfile"
+                android:padding="15dp"
+                android:drawableStart="@drawable/ic_person"
+                android:drawableEnd="@drawable/ic_forward"
+                android:drawablePadding="15dp"
+                android:gravity="center|left"
+                android:text="Thông tin cá nhân"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/gray"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_height="1dp"/>
+            <TextView
+                android:id="@+id/txtSetting"
+                android:padding="15dp"
+                android:drawableStart="@drawable/ic_setting"
+                android:drawableEnd="@drawable/ic_forward"
+                android:drawablePadding="15dp"
+                android:gravity="center|left"
+                android:text="Cài đặt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/gray"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_height="1dp"/>
+            <TextView
+                android:id="@+id/txtLogin"
+                android:visibility="gone"
+                android:padding="15dp"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawableEnd="@drawable/ic_forward"
+                android:drawablePadding="15dp"
+                android:gravity="center|left"
+                android:text="Đăng nhập"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtLogout"
+                android:padding="15dp"
+                android:visibility="visible"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawableEnd="@drawable/ic_forward"
+                android:drawablePadding="15dp"
+                android:gravity="center|left"
+                android:text="Đăng xuất"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <!-- Tiện ích -->
+        <TextView
+            android:id="@+id/txtTienIch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            android:text="Tiện ích"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/llnTienIch"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:background="@drawable/linearlayout_rounded">
+            <TextView
+                android:id="@+id/txtActivate"
+                android:padding="15dp"
+                android:drawableStart="@drawable/ic_history"
+                android:drawableEnd="@drawable/ic_forward"
+                android:drawablePadding="15dp"
+                android:gravity="center|left"
+                android:text="Hoạt động"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/gray"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_height="1dp"/>
+            <TextView
+                android:id="@+id/txtIntroduce"
+                android:padding="15dp"
+                android:drawableStart="@drawable/ic_info"
+                android:drawableEnd="@drawable/ic_forward"
+                android:drawablePadding="15dp"
+                android:gravity="center|left"
+                android:text="Giới thiệu về ứng dụng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

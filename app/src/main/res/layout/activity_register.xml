@@ -13,23 +13,28 @@
         android:gravity="center"
         android:orientation="vertical"
         android:background="@drawable/wave_top" >
+
         <TextView
-            android:layout_marginTop="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:fontFamily="@font/brawler"
             android:text="NOID"
-            android:textSize="30dp"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
         <TextView
-            android:textStyle="italic"
-            android:text="Coffee - Tea - Juice"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/damion"
+            android:text="Coffee - Tea - Juice"
+            android:textSize="15dp"
+            android:textStyle="italic" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -104,6 +109,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:hint="Mật khẩu"
+                app:passwordToggleEnabled="true"
                 app:startIconDrawable="@drawable/ic_password">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -121,6 +127,7 @@
 
                 <Button
                     android:id="@+id/btnSignUp"
+                    android:textAllCaps="false"
                     android:layout_width="292dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="25dp"
@@ -129,7 +136,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_rounded"
-                    android:text="Đăng kí"
+                    android:text="Đăng Kí"
                     app:cornerRadius="10dp" />
 
                 <LinearLayout

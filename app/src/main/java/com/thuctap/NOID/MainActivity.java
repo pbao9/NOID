@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         /* Ánh xạ view */
         bottomNavMenu = findViewById(R.id.bottom_nav);
         viewPage = findViewById(R.id.viewPager);
-
-
 
         setUpViewPage();
          /*Sự kiện Menu bottom Nav*/
