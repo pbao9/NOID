@@ -30,8 +30,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.MainActivity;
 import com.thuctap.NOID.R;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
+    private FirebaseDatabase database;
+    private DatabaseReference ref;
+    private FirebaseUser currentUser;
     private TextInputEditText loginEmail, loginPassword;
     private Button btnSignIn;
     private TextView txtRegAccount, txtForgotPassword;
@@ -42,11 +47,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+        /* Lấy người dùng đang hiện tại */
+        currentUser = auth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("taikhoan");
+
+
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
         txtRegAccount = findViewById(R.id.txtRegAccount);
+
+
 
         /* Authentication */
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 /* Kiểm tra Email cửa hàng */
-                else if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                else if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     if (!password.isEmpty()) {
                         auth.signInWithEmailAndPassword(email, password)
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -69,6 +82,19 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                         finish();
+                                        /*  Sự kiện lắng nghe người dùng thay đổi mật khẩu mới và nhận mật khẩu vào DB */
+                                        FirebaseAuth.getInstance().addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+                                            @Override
+                                            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                                                currentUser = firebaseAuth.getCurrentUser();
+                                                if (currentUser != null) {
+                                                    String userId = currentUser.getUid();
+                                                    String password = loginPassword.getText().toString().trim();
+                                                    ref = FirebaseDatabase.getInstance().getReference("taikhoan");
+                                                    ref.child(userId).child("password").setValue(password);
+                                                }
+                                            }
+                                        });
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -76,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, "Đăng nhập không thành công!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
                     } else {
                         loginPassword.setError("Mật khẩu không được để trống");
                     }
@@ -106,11 +133,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 builder.setView(dialogview);
                 AlertDialog dialog = builder.create();
-
+                /* Sự kiện nút Xác nhận */
                 dialogview.findViewById(R.id.btnConfirm).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String userEmail = edtForgotEmail.getText().toString();
+                        if (userEmail.equals("kylekhanh1028@gmail.com") || userEmail.equals("khanh1028")) {
+                            Toast.makeText(LoginActivity.this, "Địa chỉ email hoặc tên đăng nhập không được cho phép!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         if (TextUtils.isEmpty(userEmail) && !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
                             Toast.makeText(LoginActivity.this, "Nhập email đăng kí tài khoản!", Toast.LENGTH_SHORT).show();
                             return;
@@ -126,8 +157,11 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
+
                     }
                 });
+
+                /*  Sự kiện nút Huỷ */
                 dialogview.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

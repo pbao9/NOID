@@ -80,7 +80,6 @@ public class RegisterActivity extends AppCompatActivity {
                             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-
                                     if (task.isSuccessful()) {
                                         /* Thêm */
                                         FirebaseUser user = auth.getCurrentUser();
