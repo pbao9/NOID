@@ -46,19 +46,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        auth = FirebaseAuth.getInstance();
         /* Lấy người dùng đang hiện tại */
+        auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("taikhoan");
-
 
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
         txtRegAccount = findViewById(R.id.txtRegAccount);
-
 
 
         /* Authentication */
@@ -79,22 +77,9 @@ public class LoginActivity extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
-                                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                        updatePasswordtoRealtimeDatabase(password);
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                         finish();
-                                        /*  Sự kiện lắng nghe người dùng thay đổi mật khẩu mới và nhận mật khẩu vào DB */
-                                        FirebaseAuth.getInstance().addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-                                            @Override
-                                            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                                                currentUser = firebaseAuth.getCurrentUser();
-                                                if (currentUser != null) {
-                                                    String userId = currentUser.getUid();
-                                                    String password = loginPassword.getText().toString().trim();
-                                                    ref = FirebaseDatabase.getInstance().getReference("taikhoan");
-                                                    ref.child(userId).child("password").setValue(password);
-                                                }
-                                            }
-                                        });
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -174,5 +159,11 @@ public class LoginActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+    /* Update mật khẩu */
+    private void updatePasswordtoRealtimeDatabase(String newPassword) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ref = FirebaseDatabase.getInstance().getReference().child("taikhoan").child(userId).child("password");
+        ref.setValue(newPassword);
     }
 }
