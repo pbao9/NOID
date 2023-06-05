@@ -67,6 +67,8 @@ public class TrangChuFragment extends Fragment {
         slideModels.add(new SlideModel(R.drawable.background_ads_2, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.background_ads_3, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.background_ads_4, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.background_ads_5, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.background_ads_6, ScaleTypes.FIT));
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
         /* Sự kiện nhấn vào hình ảnh */
@@ -85,6 +87,12 @@ public class TrangChuFragment extends Fragment {
                         break;
                     case 3:
                         Toast.makeText(requireContext(), "Hình ảnh 4", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(requireContext(), "Hình ảnh 5", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 5:
+                        Toast.makeText(requireContext(), "Hình ảnh 6", Toast.LENGTH_SHORT).show();
                         break;
 
                 }

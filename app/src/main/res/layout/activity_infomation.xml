@@ -4,100 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".GUI.Infomation">
+
     <androidx.appcompat.widget.Toolbar
-        android:background="@drawable/statusbar_gradient"
-        android:elevation="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/statusbar_gradient"
+        android:elevation="15dp">
+
         <TextView
             android:id="@+id/Back"
-            android:drawableStart="@drawable/ic_back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_back" />
+
         <TextView
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:text="Cập nhật thông tin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cập nhật thông tin"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
-        android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
         <EditText
-            android:id="@+id/edtInfoEmail"
-            android:padding="15dp"
+            android:id="@+id/edtMailShow"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_input"
             android:drawableStart="@drawable/custom_email_focus"
             android:drawablePadding="15dp"
-            android:layout_margin="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/custom_input"
-            android:hint="Email"
+            android:editable="false"
             android:enabled="false"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"/>
-        <EditText
-            android:id="@+id/edtHoTen"
+            android:hint="Email"
             android:padding="15dp"
-            android:drawableStart="@drawable/custom_person_focus"
-            android:drawablePadding="15dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/custom_input"
-            android:hint="Nhập tên của bạn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"/>
+            android:textColor="@color/black" />
+
+
         <EditText
             android:id="@+id/edtDienThoai"
-            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_input"
             android:drawableStart="@drawable/custom_phone_focus"
             android:drawablePadding="15dp"
-            android:layout_margin="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/custom_input"
+            android:enabled="false"
             android:hint="Số điện thoại"
+            android:inputType="none"
             android:maxLength="10"
-            android:inputType="number"
+            android:textColor="@color/black"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/edtHoTen"
             android:layout_width="match_parent"
-            android:layout_height="60dp"/>
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_person_focus"
+            android:drawablePadding="15dp"
+            android:hint="Nhập tên của bạn"
+            android:padding="15dp" />
+
         <EditText
             android:id="@+id/edtDiaChi"
-            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_input"
             android:drawableStart="@drawable/custom_location_focus"
             android:drawablePadding="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_margin="10dp"
             android:hint="Địa chỉ"
-            android:background="@drawable/custom_input"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"/>
+            android:padding="15dp" />
+
         <Button
             android:id="@+id/btnUpdateInfomation"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:background="@drawable/button_rounded"
-            android:text="Cập nhật thông tin"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_rounded"
+            android:gravity="center"
+            android:text="Cập nhật thông tin" />
 
         <TextView
             android:id="@+id/txtDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:drawableStart="@drawable/ic_delete"
             android:drawablePadding="15dp"
             android:gravity="center"
             android:text="Xoá tài khoản"
-            android:textColor="#000000"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="#000000" />
     </LinearLayout>
 
 </LinearLayout>

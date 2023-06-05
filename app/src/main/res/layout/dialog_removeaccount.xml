@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:cardCornerRadius="100dp"
+    app:cardMaxElevation="20dp">
+
+    <LinearLayout
+        android:id="@+id/dialogRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:cardCornerRadius="20dp">
+
+
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="20dp"
+        app:cardMaxElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/statusbar_gradient"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Xoá tài khoản"
+                android:textColor="#333E48"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="1dp"
+                android:text="Thật buồn khi biết bạn sắp xoá tài khoản NOID. Tất cả thông tin cá nhân của bạn như số điện thoại, địa chỉ, email.. đều sẽ được xoá hết để bảo mật thông tin cá nhân của người dùng." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Chúng mình mong bạn đã có trải nghiệm tuyệt vời khi sử dụng dịch vụ của chúng mình ^^." />
+
+            <CheckBox
+                android:id="@+id/chkDeleteAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="35sp"
+                android:layout_marginLeft="5dp"
+                android:text="Xác nhận xoá tài khoản" />
+
+            <Button
+                android:id="@+id/btnConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_rounded"
+                android:backgroundTint="#a2e1db"
+                android:enabled="false"
+                android:text="Xác nhận"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

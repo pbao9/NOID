@@ -28,7 +28,7 @@ import com.thuctap.NOID.GUI.SplashActivity;
 import com.thuctap.NOID.R;
 
 public class KhacFragment extends Fragment {
-    private Button btnLogout, btnLogin, btnProfile, btnIntroduce;
+    private Button btnLogout, btnLogin, btnProfile, btnIntroduce, btnSetting;
     private TextView txtUsername, txtTienIch;
     private FirebaseAuth auth;
     private View v1;
@@ -115,6 +115,7 @@ public class KhacFragment extends Fragment {
                 startActivity(new Intent(requireContext(), IntroduceApplication.class));
             }
         });
+
 
         return view;
     }

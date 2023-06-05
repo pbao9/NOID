@@ -52,21 +52,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = edtPassword.getText().toString().trim();
                 String name = "";
                 String address = "";
-                String phone = edtPhone.getText().toString().trim();
-
+                final String phone = edtPhone.getText().toString().trim();
                 reference = FirebaseDatabase.getInstance().getReference().child("taikhoan");
                 /* Sự kiện xử lý số điện thoại trùng lặp trong Realtime DB*/
                 reference.orderByChild("phone").equalTo(phone).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (phone.isEmpty()) {
-                            edtPhone.setError("Số điện thoại không được để trống!");
+                        if (phone.isEmpty() || phone.length() < 10) {
+                            edtPhone.setError("Số điện thoại không được để trống! Hoặc chưa đủ số!");
                         }
                         if (email.isEmpty()) {
                             edtEmail.setError("Email không được để trống!");
                         }
-                        if (password.isEmpty()) {
-                            edtPassword.setError("Mật khẩu không được để trống");
+                        if (password.isEmpty() || password.length() < 6) {
+                            edtPassword.setError("Mật khẩu không được để trống! Mật khẩu phải hơn 6 kí tự");
                         } else if (snapshot.exists()) {
                             /* Trường hợp số điện thoại đã tồn tại */
                             Toast.makeText(RegisterActivity.this, "Số điện thoại này đã tồn tại!", Toast.LENGTH_SHORT).show();
