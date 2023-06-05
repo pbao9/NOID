@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:gravity="center"
-            android:text="Phiên bản ứng dụng 1.1"
+            android:text="Phiên bản ứng dụng 1.0"
             android:textSize="20dp"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -69,6 +69,7 @@
             android:text="390 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, HCMC"
             android:textColor="@color/black" />
         <ImageView
+            android:id="@+id/imgBoCongThuong"
             android:layout_gravity="bottom|center"
             android:layout_width="100dp"
             android:layout_height="100dp"

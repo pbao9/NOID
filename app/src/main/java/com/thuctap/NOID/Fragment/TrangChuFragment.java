@@ -13,7 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.GUI.LoginActivity;
 import com.thuctap.NOID.R;
+
+import java.util.ArrayList;
 
 public class TrangChuFragment extends Fragment {
 
@@ -35,7 +42,7 @@ public class TrangChuFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        
+
         super.onCreate(savedInstanceState);
     }
 
@@ -53,7 +60,39 @@ public class TrangChuFragment extends Fragment {
         btnLogin = view.findViewById(R.id.btnLogin);
         lln1 = view.findViewById(R.id.lln1);
         lln2 = view.findViewById(R.id.lln2);
+        /* Tự động chuyển hình ảnh */
+        ImageSlider imageSlider = view.findViewById(R.id.imgSlider);
+        ArrayList<SlideModel> slideModels = new ArrayList<>();
+        slideModels.add(new SlideModel(R.drawable.background_ads_1, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.background_ads_2, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.background_ads_3, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.background_ads_4, ScaleTypes.FIT));
 
+        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+        /* Sự kiện nhấn vào hình ảnh */
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemSelected(int i) {
+                switch (i) {
+                    case 0:
+                        Toast.makeText(requireContext(), "Hình ảnh 1", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(requireContext(), "Hình ảnh 2", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(requireContext(), "Hình ảnh 3", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(requireContext(), "Hình ảnh 4", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+            }
+        });
+        /* Kết thúc Sự kiện nhấn vào hình ảnh */
+
+        /* Kết thúc Tự động chuyển hình ảnh */
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
