@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     finish();
                 }
-            }, 2000);
+            }, 2500);
 
             /* End loading page start */
         }

@@ -22,14 +22,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.GUI.Infomation;
+import com.thuctap.NOID.GUI.IntroduceApplication;
 import com.thuctap.NOID.GUI.LoginActivity;
 import com.thuctap.NOID.GUI.SplashActivity;
 import com.thuctap.NOID.R;
 
 public class KhacFragment extends Fragment {
-    private Button btnSignOut;
-    private TextView txtUsername, txtLogout, txtLogin, txtProfile, txtSetting, txtTienIch;
+    private Button btnLogout, btnLogin, btnProfile, btnIntroduce;
+    private TextView txtUsername, txtTienIch;
     private FirebaseAuth auth;
+    private View v1;
     private LinearLayout llnTienIch;
     private DatabaseReference reference;
 
@@ -46,11 +48,12 @@ public class KhacFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
+        v1 = view.findViewById(R.id.v1);
         txtUsername = view.findViewById(R.id.txtUsername);
-        txtLogout = view.findViewById(R.id.txtLogout);
-        txtLogin = view.findViewById(R.id.txtLogin);
-        txtProfile = view.findViewById(R.id.txtProfile);
-        txtSetting = view.findViewById(R.id.txtSetting);
+        btnLogout = view.findViewById(R.id.btnLogout);
+        btnLogin = view.findViewById(R.id.btnLogin);
+        btnProfile = view.findViewById(R.id.btnProfile);
+        btnIntroduce = view.findViewById(R.id.btnIntroduce);
         llnTienIch = view.findViewById(R.id.llnTienIch);
         txtTienIch = view.findViewById(R.id.txtTienIch);
 
@@ -63,7 +66,7 @@ public class KhacFragment extends Fragment {
                     String userName = snapshot.getValue(String.class);
                     if (userName != null) {
                         txtUsername.setText(userName + " | THÀNH VIÊN");
-                        txtLogin.setVisibility(View.GONE);
+                        btnLogin.setVisibility(View.GONE);
                     }
                 }
 
@@ -74,16 +77,16 @@ public class KhacFragment extends Fragment {
             });
         } else {
             txtUsername.setTextSize(15);
-            txtLogout.setVisibility(View.GONE);
-            txtProfile.setVisibility(View.GONE);
-            txtSetting.setVisibility(View.GONE);
+            btnLogout.setVisibility(View.GONE);
+            btnProfile.setVisibility(View.GONE);
             llnTienIch.setVisibility(View.GONE);
-            txtLogin.setVisibility(View.VISIBLE);
+            btnLogin.setVisibility(View.VISIBLE);
             txtTienIch.setVisibility(View.GONE);
+            v1.setVisibility(View.GONE);
             txtUsername.setText("Vui lòng đăng nhập để có trải nghiệm tốt nhất!");
         }
 
-        txtLogout.setOnClickListener(new View.OnClickListener() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -92,17 +95,24 @@ public class KhacFragment extends Fragment {
             }
         });
 
-        txtLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(requireContext(), LoginActivity.class));
             }
         });
 
-        txtProfile.setOnClickListener(new View.OnClickListener() {
+        btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(requireContext(), Infomation.class));
+            }
+        });
+
+        btnIntroduce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireContext(), IntroduceApplication.class));
             }
         });
 

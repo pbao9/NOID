@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/statusbar_gradient"
         android:elevation="15dp">
-
         <ImageView
             android:layout_width="85dp"
             android:layout_height="85dp"
@@ -28,7 +27,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#F3F1F1">
         <!-- Tài khoản -->
         <TextView
             android:layout_width="match_parent"
@@ -41,62 +41,56 @@
             android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="15dp"
             android:orientation="vertical"
             android:layout_height="wrap_content"
             android:background="@drawable/linearlayout_rounded">
-            <TextView
-                android:id="@+id/txtProfile"
+            <Button
+                android:textSize="15sp"
+                android:id="@+id/btnProfile"
                 android:padding="15dp"
                 android:drawableStart="@drawable/ic_person"
                 android:drawableEnd="@drawable/ic_forward"
                 android:drawablePadding="15dp"
-                android:gravity="center|left"
                 android:text="Thông tin cá nhân"
+                android:textAllCaps="false"
+                android:background="@color/transparent"
+                android:gravity="center|left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <View
+                android:id="@+id/v1"
                 android:layout_width="match_parent"
                 android:background="@color/gray"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_height="1dp"/>
-            <TextView
-                android:id="@+id/txtSetting"
+            <Button
+                android:textSize="15sp"
+                android:id="@+id/btnLogout"
                 android:padding="15dp"
-                android:drawableStart="@drawable/ic_setting"
-                android:drawableEnd="@drawable/ic_forward"
-                android:drawablePadding="15dp"
-                android:gravity="center|left"
-                android:text="Cài đặt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <View
-                android:layout_width="match_parent"
-                android:background="@color/gray"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_height="1dp"/>
-            <TextView
-                android:id="@+id/txtLogin"
-                android:visibility="gone"
-                android:padding="15dp"
-                android:drawableStart="@drawable/ic_logout"
-                android:drawableEnd="@drawable/ic_forward"
-                android:drawablePadding="15dp"
-                android:gravity="center|left"
-                android:text="Đăng nhập"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/txtLogout"
-                android:padding="15dp"
+                android:background="@color/transparent"
+                android:textAllCaps="false"
                 android:visibility="visible"
                 android:drawableStart="@drawable/ic_logout"
                 android:drawableEnd="@drawable/ic_forward"
                 android:drawablePadding="15dp"
                 android:gravity="center|left"
                 android:text="Đăng xuất"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:textSize="15sp"
+                android:id="@+id/btnLogin"
+                android:visibility="gone"
+                android:background="@color/transparent"
+                android:textAllCaps="false"
+                android:padding="15dp"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawableEnd="@drawable/ic_forward"
+                android:drawablePadding="15dp"
+                android:gravity="center|left"
+                android:text="Đăng nhập"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -114,12 +108,15 @@
         <LinearLayout
             android:id="@+id/llnTienIch"
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="15dp"
             android:orientation="vertical"
             android:layout_height="wrap_content"
             android:background="@drawable/linearlayout_rounded">
-            <TextView
-                android:id="@+id/txtActivate"
+            <Button
+                android:id="@+id/btnActive"
+                android:textSize="15sp"
+                android:background="@color/transparent"
+                android:textAllCaps="false"
                 android:padding="15dp"
                 android:drawableStart="@drawable/ic_history"
                 android:drawableEnd="@drawable/ic_forward"
@@ -134,8 +131,11 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_height="1dp"/>
-            <TextView
-                android:id="@+id/txtIntroduce"
+            <Button
+                android:id="@+id/btnIntroduce"
+                android:textSize="15sp"
+                android:background="@color/transparent"
+                android:textAllCaps="false"
                 android:padding="15dp"
                 android:drawableStart="@drawable/ic_info"
                 android:drawableEnd="@drawable/ic_forward"

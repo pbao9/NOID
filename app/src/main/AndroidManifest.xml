@@ -12,9 +12,12 @@
         android:theme="@style/Theme.Corn"
         tools:targetApi="31">
         <activity
+            android:name=".GUI.IntroduceApplication"
+            android:exported="false" />
+        <activity
             android:name=".GUI.Infomation"
             android:exported="false"
-            android:theme="@style/Theme.Corn"/>
+            android:theme="@style/Theme.Corn" />
         <activity
             android:name=".GUI.Home"
             android:exported="false" />
@@ -31,11 +34,11 @@
         <activity
             android:name=".GUI.LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.NOID"/>
+            android:theme="@style/Theme.NOID" />
         <activity
             android:name=".GUI.RegisterActivity"
             android:exported="false"
-            android:theme="@style/Theme.NOID"/>
+            android:theme="@style/Theme.NOID" />
         <activity
             android:name=".GUI.MainActivity"
             android:exported="false"
