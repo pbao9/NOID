@@ -7,10 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,15 +24,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.thuctap.NOID.MainActivity;
 import com.thuctap.NOID.R;
-
-import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
@@ -41,6 +36,18 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText loginEmail, loginPassword;
     private Button btnSignIn;
     private TextView txtRegAccount, txtForgotPassword;
+
+    @Override
+    protected void onStart() {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            Log.i("USER", "Current user: " + currentUser.getUid());
+
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

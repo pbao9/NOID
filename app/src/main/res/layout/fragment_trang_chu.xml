@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Fragment.TrangChuFragment">
+<LinearLayout
 
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/green">
+        android:background="@drawable/statusbar_gradient">
         <!-- Đăng nhập & Đăng kí -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewLogin"
@@ -29,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -65,13 +67,14 @@
                 <Button
                     android:id="@+id/btnLogin"
                     android:textAllCaps="false"
-                    android:layout_width="wrap_content"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     app:cardCornerRadius="20dp"
-                    android:textColor="@color/white"
-                    android:backgroundTint="@color/lightgreen"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_rounded"
                     android:text="Đăng Nhập / Đăng Ký" />
             </LinearLayout>
 
@@ -426,7 +429,14 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+            <TextView
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="50dp"
+                android:text="Hết tin rồi bạn ơi!"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
+</FrameLayout>

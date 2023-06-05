@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/mainActivity"
-    tools:context=".MainActivity">
 
+    android:background="@color/white"
+    tools:context=".GUI.MainActivity">
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_nav" />
@@ -20,10 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:background="@drawable/rounded_navbar"
+        android:background="@color/white"
         android:elevation="30dp"
-        app:itemIconSize="25dp"
+        app:itemIconSize="20dp"
         app:itemIconTint="@color/hover_bottom_nav"
         app:itemTextColor="@color/hover_bottom_nav"
         app:menu="@menu/bottom_nav" />

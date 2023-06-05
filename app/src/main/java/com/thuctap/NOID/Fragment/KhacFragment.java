@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.GUI.Infomation;
 import com.thuctap.NOID.GUI.LoginActivity;
 import com.thuctap.NOID.GUI.SplashActivity;
-import com.thuctap.NOID.MainActivity;
 import com.thuctap.NOID.R;
 
 public class KhacFragment extends Fragment {

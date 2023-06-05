@@ -35,9 +35,13 @@ public class TrangChuFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
-
+        
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -61,8 +65,6 @@ public class TrangChuFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
-
-
         if (currentUser != null) {
             String userId = currentUser.getUid();
             /* Hiển thị tên người dùng */

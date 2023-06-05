@@ -6,14 +6,15 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/placeholder_background"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NOID"
+        android:theme="@style/Theme.Corn"
         tools:targetApi="31">
         <activity
             android:name=".GUI.Infomation"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Corn"/>
         <activity
             android:name=".GUI.Home"
             android:exported="false" />
@@ -29,13 +30,16 @@
         </activity>
         <activity
             android:name=".GUI.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.NOID"/>
         <activity
             android:name=".GUI.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.NOID"/>
         <activity
-            android:name=".MainActivity"
-            android:exported="false">
+            android:name=".GUI.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Corn">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

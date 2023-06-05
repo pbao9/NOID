@@ -1,4 +1,4 @@
-package com.thuctap.NOID;
+package com.thuctap.NOID.GUI;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +25,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.thuctap.NOID.Adapter.ViewPageAdapter;
 import com.thuctap.NOID.Fragment.DatHangFragment;
 import com.thuctap.NOID.Fragment.HoatDongFragment;
+import com.thuctap.NOID.Fragment.KhacFragment;
 import com.thuctap.NOID.Fragment.TrangChuFragment;
 import com.thuctap.NOID.GUI.Home;
 import com.thuctap.NOID.GUI.LoginActivity;
+import com.thuctap.NOID.R;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavMenu;
@@ -38,16 +40,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /* Chỉnh màu status bar */
+        Window window = getWindow();
+        window.setBackgroundDrawableResource(R.drawable.statusbar_gradient);
+        /* Chỉnh màu status bar */
         setContentView(R.layout.activity_main);
         /* Ánh xạ view */
         bottomNavMenu = findViewById(R.id.bottom_nav);
         viewPage = findViewById(R.id.viewPager);
-
         setUpViewPage();
-         /*Sự kiện Menu bottom Nav*/
+
+        /*Sự kiện Menu bottom Nav*/
         bottomNavMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.actionHome:
                         viewPage.setCurrentItem(0);
@@ -66,11 +73,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-         /*Kết thúc sự kiện Menu bottom Nav*/
+        /*Kết thúc sự kiện Menu bottom Nav*/
 
     }
-/*
-    *//* Chuyển đổi các trang với nhau Trang Chủ - Đặt hàng - Cửa hàng - Khác */
+
+    /*
+     *//* Chuyển đổi các trang với nhau Trang Chủ - Đặt hàng - Cửa hàng - Khác */
     private void setUpViewPage() {
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPage.setAdapter(viewPageAdapter);
