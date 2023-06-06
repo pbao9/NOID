@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:layout_margin="8sp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="wrap_content">
+    
+    <ImageView
+        android:id="@+id/imgProduct"
+        android:background="@drawable/cafe_2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtProductName"
+            android:text="Tên sản phẩm"
+            android:textSize="18sp"
+            android:textColor="@color/lightblack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="5sp"
+            android:id="@+id/txtProductDesc"
+            android:text="Mô tả sản phẩm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+        android:layout_margin="5sp"
+        android:id="@+id/txtProductPrice"
+        android:text="29,000 đ"
+        android:padding="5sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

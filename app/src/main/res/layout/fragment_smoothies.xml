@@ -6,12 +6,19 @@
     android:orientation="vertical"
     tools:context=".Fragment.SmoothiesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="15sp"
+        android:text="Sinh tố"
+        android:textColor="@color/lightblack"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="DANH MỤC SINH TỐ" />
+        tools:listitem="@layout/custom_listview" />
 </LinearLayout>

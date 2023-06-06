@@ -6,13 +6,20 @@
     android:orientation="vertical"
     tools:context=".Fragment.TeaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:gravity="center"
+        android:text="Trà Trái Cây"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/lightblack"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="15sp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TRÀ" />
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvItem"
+        tools:listitem="@layout/custom_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
