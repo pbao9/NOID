@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.thuctap.NOID.Fragment.DatHangFragment;
 import com.thuctap.NOID.Fragment.HoatDongFragment;
 import com.thuctap.NOID.Fragment.KhacFragment;
+import com.thuctap.NOID.Fragment.StoreFragment;
 import com.thuctap.NOID.Fragment.TrangChuFragment;
 
 
@@ -26,8 +27,10 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new DatHangFragment();
             case 2:
-                return new HoatDongFragment();
+                return new StoreFragment();
             case 3:
+                return new HoatDongFragment();
+            case 4:
                 return new KhacFragment();
             default:
                 return new TrangChuFragment();
@@ -36,6 +39,6 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 }

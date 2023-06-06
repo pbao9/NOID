@@ -65,7 +65,7 @@ public class KhacFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String userName = snapshot.getValue(String.class);
                     if (userName != null) {
-                        txtUsername.setText(userName + " | THÀNH VIÊN");
+                        txtUsername.setText(userName + " | KHÁCH HÀNG");
                         btnLogin.setVisibility(View.GONE);
                     }
                 }

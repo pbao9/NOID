@@ -62,11 +62,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.actionOrder:
                         viewPage.setCurrentItem(1);
                         break;
-                    case R.id.actionHistory:
+                    case R.id.actionStore:
                         viewPage.setCurrentItem(2);
                         break;
-                    case R.id.actionOther:
+                    case R.id.actionHistory:
                         viewPage.setCurrentItem(3);
+                        break;
+                    case R.id.actionOther:
+                        viewPage.setCurrentItem(4);
                         break;
                 }
                 return true;
@@ -99,9 +102,12 @@ public class MainActivity extends AppCompatActivity {
                         bottomNavMenu.getMenu().findItem(R.id.actionOrder).setChecked(true);
                         break;
                     case 2:
-                        bottomNavMenu.getMenu().findItem(R.id.actionHistory).setChecked(true);
+                        bottomNavMenu.getMenu().findItem(R.id.actionStore).setChecked(true);
                         break;
                     case 3:
+                        bottomNavMenu.getMenu().findItem(R.id.actionHistory).setChecked(true);
+                        break;
+                    case 4:
                         bottomNavMenu.getMenu().findItem(R.id.actionOther).setChecked(true);
                         break;
                 }

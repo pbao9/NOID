@@ -1,19 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".Fragment.DatHangFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
+    <!-- Tool bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FRAGMENT ĐẶT HÀNG" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/statusbar_gradient"
+                android:elevation="10dp">
+
+                <TextView
+                    android:id="@+id/iconSelected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_category"
+                    android:drawablePadding="10sp"
+                    android:drawableTint="#494949"
+                    android:focusable="true"
+                    android:text="Bảng kê những món ăn"
+                    android:textColor="#494949"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- Kết thúc tool bar-->
+
+    
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_category"
+        android:background="@drawable/statusbar_gradient"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/lightgreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>
