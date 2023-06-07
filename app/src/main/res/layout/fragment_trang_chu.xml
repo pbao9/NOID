@@ -258,7 +258,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
                                 android:layout_marginLeft="4sp"
-                                android:text="Caramel Machiato Nóng"
+                                android:text="Cà Phê Đen Nóng"
                                 android:textColor="@color/lightblack"
                                 android:textSize="10sp" />
 
@@ -274,7 +274,7 @@
                                 android:paddingTop="3sp"
                                 android:paddingRight="8sp"
                                 android:paddingBottom="3sp"
-                                android:text="55,000 đ"
+                                android:text="39,000 đ"
                                 android:textColor="@color/black"
                                 android:textSize="10sp" />
                         </LinearLayout>

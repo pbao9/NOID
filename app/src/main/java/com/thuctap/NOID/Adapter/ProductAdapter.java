@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,8 +19,11 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.squareup.picasso.Picasso;
+
 public class ProductAdapter extends ArrayAdapter<DBProduct> {
     private Context context;
+    private int resource;
     private List<DBProduct> productList;
 
     public ProductAdapter(Context context, List<DBProduct> productList) {
@@ -31,14 +35,15 @@ public class ProductAdapter extends ArrayAdapter<DBProduct> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.custom_listview, parent, false);
             holder = new ViewHolder();
-            /*holder.imgProduct = convertView.findViewById(R.id.imgProduct);*/
             holder.txtProductName = convertView.findViewById(R.id.txtProductName);
             holder.txtProductDesc = convertView.findViewById(R.id.txtProductDesc);
             holder.txtProductPrice = convertView.findViewById(R.id.txtProductPrice);
+            holder.imgProduct = convertView.findViewById(R.id.imgProduct);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -46,28 +51,33 @@ public class ProductAdapter extends ArrayAdapter<DBProduct> {
 
         DBProduct dbProduct = productList.get(position);
 
-
-        /* holder.imgProduct.setImageResource(product.getImageResource());*/
         holder.txtProductName.setText(dbProduct.getName());
         holder.txtProductDesc.setText(dbProduct.getDesc());
-        /* Hiển thị thêm . đ trong giatiensp */
+        /*Hiển thị thêm . đ trong giatiensp */
         double priceDouble = Double.parseDouble(dbProduct.getPrice());
         DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
         String formattedGiatiensp = decimalFormat.format(priceDouble);
         holder.txtProductPrice.setText(formattedGiatiensp);
-
-
+        /*Hiển thị thêm . đ trong giatiensp */
         /*holder.txtProductPrice.setText(dbProduct.getPrice());*/
 
+        String imageUrl = dbProduct.getImageUrl();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Picasso.get().load(imageUrl).into(holder.imgProduct);
+        } else {
+            // Handle case when imageUrl is empty or null
+            // For example, you can set a default image to ImageView
+            holder.imgProduct.setImageResource(R.drawable.cafe_2);
+        }
+
+
         return convertView;
-
-
     }
 
     private static class ViewHolder {
-        //        ImageView imgProduct;
         TextView txtProductName;
         TextView txtProductDesc;
         TextView txtProductPrice;
+        ImageView imgProduct;
     }
 }

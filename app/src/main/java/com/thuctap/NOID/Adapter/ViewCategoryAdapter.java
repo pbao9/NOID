@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.thuctap.NOID.Fragment.CoffeeFragment;
 import com.thuctap.NOID.Fragment.FoodSnackFragment;
 import com.thuctap.NOID.Fragment.MilkTeaFragment;
+import com.thuctap.NOID.Fragment.PackageFragment;
 import com.thuctap.NOID.Fragment.SmoothiesFragment;
 import com.thuctap.NOID.Fragment.TeaFragment;
 
@@ -34,6 +35,8 @@ public class ViewCategoryAdapter extends FragmentStatePagerAdapter {
                 return new SmoothiesFragment();
             case 4:
                 return new FoodSnackFragment();
+            case 5:
+                return new PackageFragment();
             default:
                 return new CoffeeFragment();
         }
@@ -41,7 +44,7 @@ public class ViewCategoryAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 6;
     }
 
 
@@ -64,6 +67,9 @@ public class ViewCategoryAdapter extends FragmentStatePagerAdapter {
                 break;
             case 4:
                 title = "Bánh Ngọt";
+                break;
+            case 5:
+                title = "Sản phẩm đóng gói";
                 break;
         }
         return  title;

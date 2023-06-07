@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="5sp"
     android:orientation="vertical"
     tools:context=".Fragment.CoffeeFragment">
 
@@ -18,6 +19,8 @@
 
     <ListView
         android:id="@+id/lvItem"
+        android:layout_margin="5sp"
+        android:scrollbars="none"
         tools:listitem="@layout/custom_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

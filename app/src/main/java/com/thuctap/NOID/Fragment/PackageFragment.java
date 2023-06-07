@@ -22,11 +22,10 @@ import com.thuctap.NOID.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodSnackFragment extends Fragment {
+public class PackageFragment extends Fragment {
     private ListView listView;
     private ProductAdapter adapter;
     private List<DBProduct> productList;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +33,7 @@ public class FoodSnackFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_food_snack, container, false);
+        View view = inflater.inflate(R.layout.fragment_package, container, false);
         listView = view.findViewById(R.id.lvItem);
 
         productList = new ArrayList<>();
@@ -42,8 +41,8 @@ public class FoodSnackFragment extends Fragment {
         listView.setAdapter(adapter);
 
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("sanpham");
-        DatabaseReference snack = databaseRef.child("snack");
-        snack.addValueEventListener(new ValueEventListener() {
+        DatabaseReference sanphamdonggoi = databaseRef.child("package");
+        sanphamdonggoi.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
@@ -63,6 +62,7 @@ public class FoodSnackFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 }

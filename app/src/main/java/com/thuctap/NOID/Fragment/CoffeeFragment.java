@@ -51,18 +51,17 @@ public class CoffeeFragment extends Fragment {
         listView.setAdapter(adapter);
 
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("sanpham");
-        DatabaseReference sanphamCafe = databaseRef.child("cafe");
-        sanphamCafe.addValueEventListener(new ValueEventListener() {
+        DatabaseReference cafe = databaseRef.child("cafe");
+        cafe.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String name = data.child("tensp").getValue(String.class);
                     String desc = data.child("motasp").getValue(String.class);
-                    /*String price = data.child("giasp").getValue(String.class); */// đối với dạng text "50.000đ"
-                    String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
-                    /*String imageResource = data.child("hinhanhsp").getValue(String.class);*/
-                    DBProduct product = new DBProduct(name, desc, price);
+                                        String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
+                    String imageUrl = data.child("hinhsp").getValue(String.class); // đối với dạng số "50000"
+                    DBProduct product = new DBProduct(name, desc, price, imageUrl);
                     productList.add(product);
                 }
                 adapter.notifyDataSetChanged();
