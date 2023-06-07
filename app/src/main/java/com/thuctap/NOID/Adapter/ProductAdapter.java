@@ -41,7 +41,7 @@ public class ProductAdapter extends ArrayAdapter<DBProduct> {
             convertView = LayoutInflater.from(context).inflate(R.layout.custom_listview, parent, false);
             holder = new ViewHolder();
             holder.txtProductName = convertView.findViewById(R.id.txtProductName);
-            holder.txtProductDesc = convertView.findViewById(R.id.txtProductDesc);
+            /*holder.txtProductDesc = convertView.findViewById(R.id.txtProductDesc);*/
             holder.txtProductPrice = convertView.findViewById(R.id.txtProductPrice);
             holder.imgProduct = convertView.findViewById(R.id.imgProduct);
             convertView.setTag(holder);
@@ -52,7 +52,7 @@ public class ProductAdapter extends ArrayAdapter<DBProduct> {
         DBProduct dbProduct = productList.get(position);
 
         holder.txtProductName.setText(dbProduct.getName());
-        holder.txtProductDesc.setText(dbProduct.getDesc());
+        /*holder.txtProductDesc.setText(dbProduct.getDesc());*/
         /*Hiển thị thêm . đ trong giatiensp */
         double priceDouble = Double.parseDouble(dbProduct.getPrice());
         DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
@@ -65,8 +65,6 @@ public class ProductAdapter extends ArrayAdapter<DBProduct> {
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Picasso.get().load(imageUrl).into(holder.imgProduct);
         } else {
-            // Handle case when imageUrl is empty or null
-            // For example, you can set a default image to ImageView
             holder.imgProduct.setImageResource(R.drawable.cafe_2);
         }
 

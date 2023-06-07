@@ -119,7 +119,7 @@ public class TrangChuFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String userName = snapshot.getValue(String.class);
                     if (userName != null) {
-                        txtUsername.setText("Chào " + userName);
+                        txtUsername.setText("Chào bạn " + userName);
                         lln1.setVisibility(View.GONE);
                         lln2.setVisibility(View.VISIBLE);
                     }

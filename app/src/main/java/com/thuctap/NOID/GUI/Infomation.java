@@ -53,7 +53,6 @@ public class Infomation extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
         String userId = currentUser.getUid();
-
         if (currentUser != null) {
             reference.child("taikhoan").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -128,30 +127,33 @@ public class Infomation extends AppCompatActivity {
 
                     @Override
                     public void onClick(View v) {
-                        auth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    reference.child("taikhoan").child(userId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(Infomation.this, "Đã xoá tài khoản. Hẹn gặp lại!", Toast.LENGTH_SHORT).show();
-                                            Handler handler = new Handler();
-                                            handler.postDelayed(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    startActivity(new Intent(Infomation.this, SplashActivity.class));
-                                                    finish();
-                                                }
-                                            }, 2500);
-                                        }
-                                    });
+                        String userId = currentUser.getUid();
+                        if (currentUser != null) {
+                            auth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        reference.child("taikhoan").child(userId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(Infomation.this, "Đã xoá tài khoản. Hẹn gặp lại!", Toast.LENGTH_SHORT).show();
+                                                Handler handler = new Handler();
+                                                handler.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        startActivity(new Intent(Infomation.this, SplashActivity.class));
+                                                        finish();
+                                                    }
+                                                }, 2500);
+                                            }
+                                        });
 
-                                }else{
+                                    } else {
 
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 });
                 if (dialog.getWindow() != null) {

@@ -59,7 +59,7 @@ public class CoffeeFragment extends Fragment {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String name = data.child("tensp").getValue(String.class);
                     String desc = data.child("motasp").getValue(String.class);
-                                        String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
+                    String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
                     String imageUrl = data.child("hinhsp").getValue(String.class); // đối với dạng số "50000"
                     DBProduct product = new DBProduct(name, desc, price, imageUrl);
                     productList.add(product);
