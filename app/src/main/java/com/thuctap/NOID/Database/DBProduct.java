@@ -1,16 +1,23 @@
 package com.thuctap.NOID.Database;
 
 public class DBProduct {
-    private String name;
-    private String desc;
-    private String price;
-    private String imageUrl ;
 
-    public DBProduct(String name, String desc, String price, String imageUrl) {
+    private String id,name, desc, price, imageURl;
+
+    public DBProduct(String id, String name, String desc, String price, String imageURl) {
+        this.id = id;
         this.name = name;
         this.desc = desc;
         this.price = price;
-        this.imageUrl = imageUrl;
+        this.imageURl = imageURl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -37,11 +44,11 @@ public class DBProduct {
         this.price = price;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageURl() {
+        return imageURl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageURl(String imageURl) {
+        this.imageURl = imageURl;
     }
 }

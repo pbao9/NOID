@@ -47,6 +47,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_category"
         app:tabMode="scrollable"
+        android:scrollbars="none"
         android:background="@drawable/statusbar_gradient"
         app:tabSelectedTextColor="@color/lightgreen"
         android:layout_width="match_parent"

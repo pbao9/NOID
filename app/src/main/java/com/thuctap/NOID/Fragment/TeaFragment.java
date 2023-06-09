@@ -41,11 +41,12 @@ public class TeaFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productTea.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
+                    String id = data.getKey();
                     String name = data.child("tensp").getValue(String.class);
                     String desc = data.child("motasp").getValue(String.class);
                     String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
                     String imageUrl = data.child("hinhsp").getValue(String.class);
-                    DBProduct product = new DBProduct(name, desc, price, imageUrl);
+                    DBProduct product = new DBProduct(id, name, desc, price, imageUrl);
                     productTea.add(product);
                 }
                 adapterTea.notifyDataSetChanged();
