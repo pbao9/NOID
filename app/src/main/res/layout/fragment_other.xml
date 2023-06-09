@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragment.OtherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!--Linh Tinh-->
     <TextView
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginBottom="10sp"
+        android:text="Linh Tinh"
+        android:textColor="@color/lightblack"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewOther"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Không có dữ liệu" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:scrollbars="none"
+        tools:listitem="@layout/custom_recyclerview" />
 
-</FrameLayout>
+</LinearLayout>

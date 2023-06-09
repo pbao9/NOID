@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,49 +26,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeaFragment extends Fragment {
-    private ListView listView;
-    private ProductAdapter adapter;
-    private List<DBProduct> productList;
+    private RecyclerView recyclerViewTea;
+    private ProductAdapter adapterTea;
+    private List<DBProduct> productTea;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        String tea = "-NXDtH8cDFrHbWFztoFk"; // Mã danh mục Trà trái cây
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("sanpham");
+        Query query_tea = databaseRef.orderByChild("madm").equalTo(tea);
+
+        query_tea.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                productTea.clear();
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String name = data.child("tensp").getValue(String.class);
+                    String desc = data.child("motasp").getValue(String.class);
+                    String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
+                    String imageUrl = data.child("hinhsp").getValue(String.class);
+                    DBProduct product = new DBProduct(name, desc, price, imageUrl);
+                    productTea.add(product);
+                }
+                adapterTea.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tea, container, false);
-        /*listView = view.findViewById(R.id.lvItem);
-
-        productList = new ArrayList<>();
-        adapter = new ProductAdapter(getActivity(), productList);
-        listView.setAdapter(adapter);
-
-        String tea = "-NXDtH8cDFrHbWFztoFk"; // Mã danh mục trà
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("sanpham");
-        Query query = databaseRef.orderByChild("madm").equalTo(tea);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                productList.clear();
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    String name = data.child("tensp").getValue(String.class);
-                    String desc = data.child("motasp").getValue(String.class);
-                    String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
-                    *//*String price = data.child("giasp").getValue(String.class); // đối với dạng số "50000" // dạng string*//*
-                    String imageUrl = data.child("hinhsp").getValue(String.class);
-                    DBProduct product = new DBProduct(name, desc, price, imageUrl);
-                    productList.add(product);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-
+        recyclerViewTea = view.findViewById(R.id.recyclerViewTea);
+        productTea = new ArrayList<>();
+        adapterTea = new ProductAdapter(productTea);
+        recyclerViewTea.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewTea.setAdapter(adapterTea);
         return view;
     }
 }

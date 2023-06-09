@@ -6,23 +6,26 @@
     android:orientation="vertical"
     tools:context=".Fragment.TeaFragment">
 
+    <!--Trái Trái Cây-->
     <TextView
-        android:text="Trà Trái Cây"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/lightblack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
         android:layout_marginTop="15sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_marginBottom="10sp"
+        android:text="Trà Trái Cây"
+        android:textColor="@color/lightblack"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-    <ListView
-        android:id="@+id/lvItem"
-        tools:listitem="@layout/custom_recyclerview"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTea"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:scrollbars="none"
+        tools:listitem="@layout/custom_recyclerview" />
 
 </LinearLayout>

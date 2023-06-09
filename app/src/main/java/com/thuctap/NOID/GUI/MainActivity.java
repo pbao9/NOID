@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewPager.setAdapter(fragmentAdapter);
+        viewPager.setUserInputEnabled(false);
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

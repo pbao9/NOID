@@ -24,6 +24,7 @@ public class DatHangFragment extends Fragment {
     private ViewPager2 view_category;
 
     public DatHangFragment() {
+
     }
 
     @Override
@@ -41,12 +42,13 @@ public class DatHangFragment extends Fragment {
         ViewCategoryAdapter viewCategoryAdapter = new ViewCategoryAdapter(getActivity());
         view_category.setAdapter(viewCategoryAdapter);
 
-        /*new TabLayoutMediator(tab_category, view_category,
-                (tab, position) -> tab.setText(viewCategoryAdapter.getPageTitle(position))
-        ).attach();*/
-
-
-
+        /* new TabLayoutMediator(tab_category, view_category, (tab, position) -> tab.setText(viewCategoryAdapter.getPageTitle(position))).attach();*/
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tab_category, view_category, (tab, position) -> {
+            String title = viewCategoryAdapter.getPageTitle(position).toString();
+            tab.setText(title);
+            tab.setTag(position); // Lưu trữ vị trí của tab
+        });
+        tabLayoutMediator.attach();
         return view;
     }
 
@@ -62,6 +64,18 @@ public class DatHangFragment extends Fragment {
             switch (position) {
                 case 0:
                     return new CoffeeFragment();
+                case 1:
+                    return new MilkTeaFragment();
+                case 2:
+                    return new TeaFragment();
+                case 3:
+                    return new SmoothiesFragment();
+                case 4:
+                    return new FoodSnackFragment();
+                case 5:
+                    return new PackageFragment();
+                case 6:
+                    return new OtherFragment();
                 default:
                     return new CoffeeFragment();
             }
