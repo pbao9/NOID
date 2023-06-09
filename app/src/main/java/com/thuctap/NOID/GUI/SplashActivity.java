@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Window;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,8 +21,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onStart() {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
-            Log.i("USER", "Current user: " + currentUser.getUid());
-
+           currentUser.getUid();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         } else {

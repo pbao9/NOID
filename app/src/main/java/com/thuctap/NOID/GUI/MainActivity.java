@@ -1,41 +1,27 @@
 package com.thuctap.NOID.GUI;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.thuctap.NOID.Adapter.ViewPageAdapter;
 import com.thuctap.NOID.Fragment.DatHangFragment;
 import com.thuctap.NOID.Fragment.HoatDongFragment;
 import com.thuctap.NOID.Fragment.KhacFragment;
+import com.thuctap.NOID.Fragment.StoreFragment;
 import com.thuctap.NOID.Fragment.TrangChuFragment;
-import com.thuctap.NOID.GUI.Home;
-import com.thuctap.NOID.GUI.LoginActivity;
 import com.thuctap.NOID.R;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavMenu;
-    private ViewPager viewPage;
-    private Button btnLogin;
-    private FirebaseAuth auth;
+    private ViewPager2 viewPager;
+    private FragmentStateAdapter fragmentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +33,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         /* Ánh xạ view */
         bottomNavMenu = findViewById(R.id.bottom_nav);
-        viewPage = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
         setUpViewPage();
 
         /*Sự kiện Menu bottom Nav*/
         bottomNavMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.actionHome:
-                        viewPage.setCurrentItem(0);
+                        viewPager.setCurrentItem(0);
                         return true;
                     case R.id.actionOrder:
-                        viewPage.setCurrentItem(1);
+                        viewPager.setCurrentItem(1);
                         break;
                     case R.id.actionStore:
-                        viewPage.setCurrentItem(2);
+                        viewPager.setCurrentItem(2);
                         break;
                     case R.id.actionHistory:
-                        viewPage.setCurrentItem(3);
+                        viewPager.setCurrentItem(3);
                         break;
                     case R.id.actionOther:
-                        viewPage.setCurrentItem(4);
+                        viewPager.setCurrentItem(4);
                         break;
                 }
-                return true;
+                return false;
 
             }
         });
@@ -80,18 +65,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
-     *//* Chuyển đổi các trang với nhau Trang Chủ - Đặt hàng - Cửa hàng - Khác */
     private void setUpViewPage() {
-        ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPage.setAdapter(viewPageAdapter);
-
-        viewPage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        fragmentAdapter = new FragmentStateAdapter(this) {
+            @NonNull
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            public Fragment createFragment(int position) {
+                switch (position) {
+                    case 0:
+                        return new TrangChuFragment();
+                    case 1:
+                        return new DatHangFragment();
+                    case 2:
+                        return new StoreFragment();
+                    case 3:
+                        return new HoatDongFragment();
+                    case 4:
+                        return new KhacFragment();
+                    default:
+                        return new TrangChuFragment();
+                }
             }
 
+            @Override
+            public int getItemCount() {
+                return 5;
+            }
+        };
+        viewPager.setAdapter(fragmentAdapter);
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 switch (position) {
@@ -111,11 +113,6 @@ public class MainActivity extends AppCompatActivity {
                         bottomNavMenu.getMenu().findItem(R.id.actionOther).setChecked(true);
                         break;
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
             }
         });
     }

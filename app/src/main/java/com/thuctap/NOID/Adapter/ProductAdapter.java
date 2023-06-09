@@ -4,62 +4,45 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thuctap.NOID.Database.DBProduct;
 import com.thuctap.NOID.R;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.squareup.picasso.Picasso;
 
-public class ProductAdapter extends ArrayAdapter<DBProduct> {
-    private Context context;
-    private int resource;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private List<DBProduct> productList;
 
-    public ProductAdapter(Context context, List<DBProduct> productList) {
-        super(context, R.layout.custom_listview, productList);
-        this.context = context;
+    public ProductAdapter(List<DBProduct> productList) {
         this.productList = productList;
     }
 
+
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false);
+        return new ViewHolder(view);
+    }
 
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.custom_listview, parent, false);
-            holder = new ViewHolder();
-            holder.txtProductName = convertView.findViewById(R.id.txtProductName);
-            /*holder.txtProductDesc = convertView.findViewById(R.id.txtProductDesc);*/
-            holder.txtProductPrice = convertView.findViewById(R.id.txtProductPrice);
-            holder.imgProduct = convertView.findViewById(R.id.imgProduct);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DBProduct dbProduct = productList.get(position);
 
         holder.txtProductName.setText(dbProduct.getName());
-        /*holder.txtProductDesc.setText(dbProduct.getDesc());*/
-        /*Hiển thị thêm . đ trong giatiensp */
         double priceDouble = Double.parseDouble(dbProduct.getPrice());
         DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
         String formattedGiatiensp = decimalFormat.format(priceDouble);
         holder.txtProductPrice.setText(formattedGiatiensp);
-        /*Hiển thị thêm . đ trong giatiensp */
-        /*holder.txtProductPrice.setText(dbProduct.getPrice());*/
 
         String imageUrl = dbProduct.getImageUrl();
         if (imageUrl != null && !imageUrl.isEmpty()) {
@@ -67,15 +50,23 @@ public class ProductAdapter extends ArrayAdapter<DBProduct> {
         } else {
             holder.imgProduct.setImageResource(R.drawable.cafe_2);
         }
-
-
-        return convertView;
     }
 
-    private static class ViewHolder {
+    @Override
+    public int getItemCount() {
+        return productList.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtProductName;
-        TextView txtProductDesc;
         TextView txtProductPrice;
         ImageView imgProduct;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtProductName = itemView.findViewById(R.id.txtProductName);
+            txtProductPrice = itemView.findViewById(R.id.txtProductPrice);
+            imgProduct = itemView.findViewById(R.id.imgProduct);
+        }
     }
 }

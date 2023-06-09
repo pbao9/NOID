@@ -44,18 +44,16 @@
     </LinearLayout>
     <!-- Kết thúc tool bar-->
 
-    
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_category"
-        android:background="@drawable/statusbar_gradient"
         app:tabMode="scrollable"
+        android:background="@drawable/statusbar_gradient"
         app:tabSelectedTextColor="@color/lightgreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <androidx.viewpager.widget.ViewPager
+
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
 </LinearLayout>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     tools:context=".Fragment.HoatDongFragment">
 
@@ -25,12 +26,26 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_history"
+                    android:drawablePadding="10sp"
+                    android:drawableTint="#494949"
                     android:text="Hoạt Động"
                     android:textColor="#494949"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_history"
+            android:background="@drawable/statusbar_gradient"
+            app:tabSelectedTextColor="@color/lightgreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 </LinearLayout>

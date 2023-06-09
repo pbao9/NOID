@@ -24,6 +24,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        tools:listitem="@layout/custom_listview" />
+        tools:listitem="@layout/custom_recyclerview" />
 
 </LinearLayout>

@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (phone.isEmpty() || phone.length() < 10) {
                             edtPhone.setError("Số điện thoại không được để trống! Hoặc chưa đủ số!");
+                            return;
                         }
                         if (email.isEmpty()) {
                             edtEmail.setError("Email không được để trống!");

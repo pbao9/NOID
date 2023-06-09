@@ -35,7 +35,7 @@ public class PackageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_package, container, false);
-        listView = view.findViewById(R.id.lvItem);
+        /*listView = view.findViewById(R.id.lvItem);
 
         productList = new ArrayList<>();
         adapter = new ProductAdapter(getActivity(), productList);
@@ -51,8 +51,8 @@ public class PackageFragment extends Fragment {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String name = data.child("tensp").getValue(String.class);
                     String desc = data.child("motasp").getValue(String.class);
-                    /*String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"*/
-                    String price = data.child("giasp").getValue(String.class); // đối với dạng số "50000" // dạng string
+                    String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
+                    *//*String price = data.child("giasp").getValue(String.class); // đối với dạng số "50000" // dạng string*//*
                     String imageUrl = data.child("hinhsp").getValue(String.class);
                     DBProduct product = new DBProduct(name, desc, price, imageUrl);
                     productList.add(product);
@@ -64,7 +64,7 @@ public class PackageFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         return view;
     }

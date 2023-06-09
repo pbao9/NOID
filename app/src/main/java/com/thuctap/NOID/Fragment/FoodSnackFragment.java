@@ -24,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoodSnackFragment extends Fragment {
-    private ListView listView;
+    /*private ListView listView;
     private ProductAdapter adapter;
-    private List<DBProduct> productList;
+    private List<DBProduct> productList;*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,13 +36,13 @@ public class FoodSnackFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food_snack, container, false);
-        listView = view.findViewById(R.id.lvItem);
+       /* listView = view.findViewById(R.id.lvItem);
 
         productList = new ArrayList<>();
         adapter = new ProductAdapter(getActivity(), productList);
         listView.setAdapter(adapter);
 
-        String snack = "-NXOrczHNuTFoEhXKwfe"; // Mã danh mục snack
+        String snack = "-NXOrczCnri2fMR2gUWP"; // Mã danh mục snack
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("sanpham");
         Query query = databaseRef.orderByChild("madm").equalTo(snack);
         query.addValueEventListener(new ValueEventListener() {
@@ -52,8 +52,8 @@ public class FoodSnackFragment extends Fragment {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String name = data.child("tensp").getValue(String.class);
                     String desc = data.child("motasp").getValue(String.class);
-                    /*String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"*/
-                    String price = data.child("giasp").getValue(String.class); // đối với dạng số "50000" // dạng string
+                    String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
+                   *//* String price = data.child("giasp").getValue(String.class); // đối với dạng số "50000" // dạng string*//*
                     String imageUrl = data.child("hinhsp").getValue(String.class);
                     DBProduct product = new DBProduct(name, desc, price, imageUrl);
                     productList.add(product);
@@ -63,9 +63,8 @@ public class FoodSnackFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
-        });
+        });*/
         return view;
     }
 }
