@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,8 @@ public class CartActivity extends AppCompatActivity {
     private DatabaseReference database;
     private FirebaseAuth auth;
     private RecyclerView recyclerView;
-    private TextView txtPrice, txtTotalPrice, txtName, txtAddress, txtPhone;
+    private RelativeLayout relay1, relay2;
+    private TextView txtPrice, txtTotalPrice, txtName, txtAddress, txtPhone, Back, txtAddProduct, txtEditProfile, txtRemoveCart;
     private Button btnDatHang, btnTotal;
     private CartAdapter cartAdapter;
     private ArrayList<DBCart> cartItems;
@@ -58,9 +60,49 @@ public class CartActivity extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         txtAddress = findViewById(R.id.txtAddress);
         txtPhone = findViewById(R.id.txtPhone);
+        txtAddProduct = findViewById(R.id.txtAddProduct);
+        txtEditProfile = findViewById(R.id.txtEditProfile);
+        txtRemoveCart = findViewById(R.id.txtRemoveCart);
+        Back = findViewById(R.id.Back);
         btnTotal = findViewById(R.id.btnTotal);
+        btnDatHang = findViewById(R.id.btnDatHang);
+        relay1 = findViewById(R.id.relay1);
+        relay2 = findViewById(R.id.relay2);
         loadCartItems();
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        txtEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, Infomation.class);
+                startActivity(intent);
+            }
+        });
+
+        txtAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                intent.putExtra("fragmentIndex", 1);
+                startActivity(intent);
+            }
+        });
+        btnDatHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                intent.putExtra("fragmentIndex", 1);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     private void loadCartItems() {
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -96,6 +138,17 @@ public class CartActivity extends AppCompatActivity {
                         cartItems.add(cartItem);
                     }
                     displayCartItems();
+                    if (cartItems.isEmpty()) {
+                        // Hiển thị giao diện RL1
+                        // ...
+                        relay2.setVisibility(View.VISIBLE);
+                        relay1.setVisibility(View.GONE);
+                    } else {
+                        // Hiển thị giao diện LLN1
+                        // ...
+                        relay2.setVisibility(View.GONE);
+                        relay1.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override
@@ -140,4 +193,7 @@ public class CartActivity extends AppCompatActivity {
         txtTotalPrice.setText(totalWithExtraFeeText);
         btnTotal.setText("Đặt Hàng " + "(" + totalWithExtraFeeText + ")");
     }
+
+
+
 }

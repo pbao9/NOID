@@ -54,13 +54,14 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_marginBottom="5sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtPhuongThuc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="13dp"
@@ -69,7 +70,20 @@
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/txtRemoveCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="13dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="5sp"
+                        android:text="Xoá Giỏ Hàng"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
                     <View
+                        android:id="@+id/view1"
+                        android:layout_below="@+id/txtPhuongThuc"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:layout_marginLeft="10dp"
@@ -79,6 +93,8 @@
                         android:background="@color/black" />
 
                     <RelativeLayout
+                        android:id="@+id/relayCardViewInfo"
+                        android:layout_below="@+id/view1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -87,6 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="13dp"
+                            android:textStyle="bold"
                             android:text="Họ Tên / Địa chỉ / Số điện thoại: "
                             android:textColor="@color/black" />
 
@@ -107,10 +124,21 @@
                             android:layout_below="@+id/txtName"
                             android:layout_marginLeft="13dp"
                             android:layout_marginTop="2sp"
-                            android:drawableEnd="@drawable/ic_forward"
                             android:drawableTint="@color/lightblack"
                             android:text="390 Hoàng Văn Thụ, P. 4, Q. Tân Bình, TP.HCM"
                             android:textColor="@color/lightblack" />
+
+                        <TextView
+                            android:id="@+id/txtEditProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtAddress"
+                            android:layout_marginRight="13dp"
+                            android:layout_marginTop="3sp"
+                            android:textStyle="bold"
+                            android:layout_alignParentRight="true"
+                            android:drawableTint="@color/lightblack"
+                            android:text="Chỉnh sửa thông tin" />
 
                         <TextView
                             android:id="@+id/txtPhone"
@@ -123,24 +151,29 @@
                     </RelativeLayout>
 
                     <View
+                        android:layout_below="@+id/relayCardViewInfo"
+                        android:id="@+id/view2"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5sp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="5sp"
                         android:background="@color/black" />
 
                     <EditText
+
+                        android:layout_below="@+id/view2"
                         android:id="@+id/edtNote"
                         android:layout_width="match_parent"
                         android:layout_height="50sp"
                         android:backgroundTint="@color/transparent"
-                        android:drawableStart="@drawable/ic_note"
+                        android:drawableLeft="@drawable/ic_note"
+                        android:drawableTint="@color/lightblack"
                         android:drawablePadding="5sp"
                         android:hint="Ghi chú đơn hàng"
                         android:textSize="15sp" />
-                </LinearLayout>
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <!-- Card view danh sách sản phẩm -->
