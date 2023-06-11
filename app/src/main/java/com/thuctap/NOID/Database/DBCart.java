@@ -2,20 +2,30 @@ package com.thuctap.NOID.Database;
 
 public class DBCart {
 
-    private String customerId, productId, productName, productPrice, productTotalPrice, productNoteCart;
+    private String cartId, customerId, productId, productName, productPrice, productTotalPrice, productNoteCart, productTimeOrder;
     private int productCount;
 
     public DBCart() {
     }
 
-    public DBCart(String customerId, String productId, String productName, String productPrice, String productTotalPrice, String productNoteCart, int productCount) {
+    public DBCart(String cartId, String customerId, String productId, String productName, String productPrice, String productTotalPrice, String productNoteCart, String productTimeOrder, int productCount) {
+        this.cartId = cartId;
         this.customerId = customerId;
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productTotalPrice = productTotalPrice;
         this.productNoteCart = productNoteCart;
+        this.productTimeOrder = productTimeOrder;
         this.productCount = productCount;
+    }
+
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
     public String getCustomerId() {
@@ -64,6 +74,14 @@ public class DBCart {
 
     public void setProductNoteCart(String productNoteCart) {
         this.productNoteCart = productNoteCart;
+    }
+
+    public String getProductTimeOrder() {
+        return productTimeOrder;
+    }
+
+    public void setProductTimeOrder(String productTimeOrder) {
+        this.productTimeOrder = productTimeOrder;
     }
 
     public int getProductCount() {

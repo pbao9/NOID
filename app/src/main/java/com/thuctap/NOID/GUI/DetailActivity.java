@@ -30,7 +30,10 @@ import com.thuctap.NOID.Database.DBProduct;
 import com.thuctap.NOID.R;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class DetailActivity extends AppCompatActivity {
     private TextView txtProductNameDetail, txtCountProduct, txtProductPriceDetail, txtProductDescDetail;
@@ -127,12 +130,15 @@ public class DetailActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            String cartItemId = database.child("orders").push().getKey();
+            String cartItemId = database.child("cart").push().getKey();
             String note = edtNote.getText().toString();
             int updatedPrice = Integer.parseInt(productPrice) * count;
-            DBCart cartItem = new DBCart(userId, productId, null, productPrice, String.valueOf(updatedPrice),note, count);
-            /*DBCart cartItem = new DBCart(null, null, null, null,null, null);*/
-            database.child("orders").child(userId).child(cartItemId).setValue(cartItem)
+            // Lấy ngày giờ hiện tại
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+            String currentDateAndTime = sdf.format(new Date());
+            DBCart cartItem = new DBCart(null, userId, productId, productName, productPrice, String.valueOf(updatedPrice), note, currentDateAndTime, count);
+
+            database.child("cart").child(userId).child(cartItemId).setValue(cartItem)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

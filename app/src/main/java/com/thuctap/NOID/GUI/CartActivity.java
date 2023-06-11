@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,15 +32,19 @@ import com.thuctap.NOID.Database.DBOrder;
 import com.thuctap.NOID.R;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
     private DatabaseReference database;
     private FirebaseAuth auth;
     private RecyclerView recyclerView;
     private RelativeLayout relay1, relay2;
-    private TextView txtPrice, txtTotalPrice, txtName, txtAddress, txtPhone, Back, txtAddProduct, txtEditProfile, txtRemoveCart;
+    private TextView txtPrice, txtTotalPrice, txtName, txtAddress, txtPhone, Back, txtAddProduct, txtEditProfile, txtRemoveCart, txtDayTime;
     private Button btnDatHang, btnTotal;
     private CartAdapter cartAdapter;
     private ArrayList<DBCart> cartItems;
@@ -63,12 +69,24 @@ public class CartActivity extends AppCompatActivity {
         txtAddProduct = findViewById(R.id.txtAddProduct);
         txtEditProfile = findViewById(R.id.txtEditProfile);
         txtRemoveCart = findViewById(R.id.txtRemoveCart);
+        txtDayTime = findViewById(R.id.txtDayTime);
         Back = findViewById(R.id.Back);
         btnTotal = findViewById(R.id.btnTotal);
         btnDatHang = findViewById(R.id.btnDatHang);
         relay1 = findViewById(R.id.relay1);
         relay2 = findViewById(R.id.relay2);
         loadCartItems();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        String currentDateAndTime = sdf.format(new Date());
+
+        txtDayTime.setText(currentDateAndTime);
+
+        txtRemoveCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeCart();
+            }
+        });
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +121,6 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
-
     private void loadCartItems() {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
@@ -129,7 +146,7 @@ public class CartActivity extends AppCompatActivity {
             });
 
 
-            database.child("orders").child(userId).addValueEventListener(new ValueEventListener() {
+            database.child("cart").child(userId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     cartItems = new ArrayList<>();
@@ -194,6 +211,30 @@ public class CartActivity extends AppCompatActivity {
         btnTotal.setText("Đặt Hàng " + "(" + totalWithExtraFeeText + ")");
     }
 
+    private void removeCart() {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference ordersRef = database.child("cart");
 
+            ordersRef.child(userId).removeValue()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Xóa thành công
+                            // Cập nhật hiển thị giỏ hàng sau khi xóa
+                            Toast.makeText(CartActivity.this, "Xoá thành công giỏ hàng, vui lòng kiểm tra!", Toast.LENGTH_SHORT).show();
+                            displayCartItems();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Xóa thất bại
+                            // Xử lý lỗi
+                        }
+                    });
+        }
+    }
 
 }

@@ -162,7 +162,6 @@
                         android:background="@color/black" />
 
                     <EditText
-
                         android:layout_below="@+id/view2"
                         android:id="@+id/edtNote"
                         android:layout_width="match_parent"
@@ -173,6 +172,14 @@
                         android:drawablePadding="5sp"
                         android:hint="Ghi chú đơn hàng"
                         android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_below="@+id/edtNote"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/txtDayTime"
+                        android:text="12/06/2023 02:43 PM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
