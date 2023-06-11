@@ -19,6 +19,7 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thuctap.NOID.GUI.CartActivity;
 import com.thuctap.NOID.GUI.LoginActivity;
 import com.thuctap.NOID.R;
 
@@ -34,6 +36,7 @@ import java.util.ArrayList;
 public class TrangChuFragment extends Fragment {
 
     private CardView cardViewLogin;
+    private FloatingActionButton btnCart;
     private Button btnLogin;
     private TextView txtUsername;
     private FirebaseAuth auth;
@@ -57,8 +60,10 @@ public class TrangChuFragment extends Fragment {
         cardViewLogin = view.findViewById(R.id.cardViewLogin);
         txtUsername = view.findViewById(R.id.txtUsername);
         btnLogin = view.findViewById(R.id.btnLogin);
+        btnCart = view.findViewById(R.id.btnCart);
         lln1 = view.findViewById(R.id.lln1);
         lln2 = view.findViewById(R.id.lln2);
+
         /* Tự động chuyển hình ảnh */
         ImageSlider imageSlider = view.findViewById(R.id.imgSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
@@ -106,6 +111,13 @@ public class TrangChuFragment extends Fragment {
                 startActivity(new Intent(requireContext(), LoginActivity.class));
             }
         });
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireContext(), CartActivity.class));
+            }
+        });
         /* Sự kiện Menu bottom Nav */
         /* Authentication */
         auth = FirebaseAuth.getInstance();
@@ -122,6 +134,7 @@ public class TrangChuFragment extends Fragment {
                         txtUsername.setText("Chào bạn " + userName);
                         lln1.setVisibility(View.GONE);
                         lln2.setVisibility(View.VISIBLE);
+                        btnCart.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -133,6 +146,7 @@ public class TrangChuFragment extends Fragment {
         } else {
             lln1.setVisibility(View.VISIBLE);
             lln2.setVisibility(View.GONE);
+            btnCart.setVisibility(View.GONE);
         }
         return view;
     }

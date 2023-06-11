@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".GUI.CartActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/statusbar_gradient"
+        android:elevation="15dp">
+
+        <TextView
+            android:id="@+id/Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Giỏ Hàng"
+            android:textColor="@color/lightblack"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/relay1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarCart"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/llnInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Card view phương thức  -->
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_marginBottom="5sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="5sp"
+                        android:text="Phương thức: "
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5sp"
+                        android:background="@color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/txtPhuongThucLienLac"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:text="Họ Tên / Địa chỉ / Số điện thoại: "
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/txtName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtPhuongThucLienLac"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginTop="3sp"
+                            android:text="Nguyễn Văn A"
+                            android:textColor="@color/lightblack" />
+
+                        <TextView
+                            android:id="@+id/txtAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtName"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginTop="2sp"
+                            android:drawableEnd="@drawable/ic_forward"
+                            android:drawableTint="@color/lightblack"
+                            android:text="390 Hoàng Văn Thụ, P. 4, Q. Tân Bình, TP.HCM"
+                            android:textColor="@color/lightblack" />
+
+                        <TextView
+                            android:id="@+id/txtPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="13sp"
+                            android:text="(091) 2345 678"
+                            android:textColor="@color/lightblack" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5sp"
+                        android:background="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edtNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:backgroundTint="@color/transparent"
+                        android:drawableStart="@drawable/ic_note"
+                        android:drawablePadding="5sp"
+                        android:hint="Ghi chú đơn hàng"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card view danh sách sản phẩm -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginTop="5sp"
+                            android:text="Danh sách sản phẩm:  "
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtAddProduct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginRight="13dp"
+                            android:text="Thêm sản phẩm"
+                            android:textColor="@color/lightblack" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5sp"
+                        android:background="@color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="5sp"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewCart"
+                            android:layout_width="match_parent"
+                            tools:listitem="@layout/custom_recyclerview_cart"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </RelativeLayout>
+<!--
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5sp"
+                        android:background="@color/black" />
+-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="5sp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/txtTamTinh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:textColor="@color/lightblack"
+                            android:text="Tạm tính " />
+                        <TextView
+                            android:layout_below="@+id/txtTamTinh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:text="(+30.000 đ Phí giao hàng) " />
+                        <TextView
+                            android:id="@+id/txtPrice"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/lightblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="13dp"
+                            android:text="87.000 đ" />
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5sp"
+                        android:background="@color/black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="5sp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:text="Tổng cộng " />
+                        <TextView
+                            android:id="@+id/txtTotalPrice"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/lightblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="13dp"
+                            android:text="87.000 đ" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="85dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnTotal"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_rounded"
+                android:text="Đặt Hàng (87.000 đ)"
+                android:textAllCaps="false"
+                android:textColor="@color/lightblack" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relay2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/text1"
+            android:layout_centerInParent="true"
+            android:drawableStart="@drawable/ic_cart"
+            android:drawableTint="@color/lightblack" />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:text="Giỏ hàng của bạn đang trống"
+            android:textColor="@color/lightblack"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:text="Bạn chưa thêm bất cứ sản phẩm nào vào giỏ hàng của mình"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/btnDatHang"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:textAllCaps="false"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/button_rounded"
+            android:text="Đặt Hàng ngay"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+</RelativeLayout>

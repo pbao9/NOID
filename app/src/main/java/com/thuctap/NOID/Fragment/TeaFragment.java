@@ -46,7 +46,7 @@ public class TeaFragment extends Fragment {
                     String desc = data.child("motasp").getValue(String.class);
                     String price = String.valueOf(data.child("giasp").getValue(Long.class)); // đối với dạng số "50000"
                     String imageUrl = data.child("hinhsp").getValue(String.class);
-                    DBProduct product = new DBProduct(id, name, desc, price, imageUrl);
+                    DBProduct product = new DBProduct(id,name, desc, price, imageUrl);
                     productTea.add(product);
                 }
                 adapterTea.notifyDataSetChanged();

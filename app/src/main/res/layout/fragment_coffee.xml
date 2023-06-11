@@ -40,11 +40,6 @@
                     android:scrollbars="none"
                     tools:listitem="@layout/custom_recyclerview" />
 
-
-
-
-
-
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

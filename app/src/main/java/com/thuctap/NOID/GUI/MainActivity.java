@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        int fragmentIndex = getIntent().getIntExtra("fragmentIndex", 0);
+        viewPager.setCurrentItem(fragmentIndex);
         /*Kết thúc sự kiện Menu bottom Nav*/
 
     }

@@ -42,7 +42,7 @@
                 android:layout_marginTop="15sp"
                 android:text="Tên sản phẩm"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -55,18 +55,14 @@
                     android:layout_height="wrap_content"
                     android:padding="5sp"
                     android:text="29,000 đ"
-                    android:textSize="12sp" />
-
-                <ImageView
-                    android:id="@+id/imgAdd"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="25sp"
-                    android:src="@drawable/ic_add" />
+                    android:textSize="14sp" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 </LinearLayout>

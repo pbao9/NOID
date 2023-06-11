@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +11,7 @@
 
     <!-- Hiển thị trạng thái người đăng nhập -->
     <LinearLayout
+        android:id="@+id/Login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/statusbar_gradient"
@@ -131,6 +132,9 @@
     <!-- Hình ảnh tự động -->
 
     <LinearLayout
+        android:layout_below="@id/Login"
+        android:id="@+id/Ads"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
@@ -156,10 +160,11 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
     <!-- Kết thúc Hình ảnh tự động -->
-
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/deal"
+        android:layout_below="@id/Ads"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <!-- Linearlayout bao gồm sản phẩm bán chạy và ưu đãi -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -189,7 +194,8 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="120dp"
                         android:layout_height="160dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="5dp">
 
@@ -237,7 +243,8 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="120dp"
                         android:layout_height="160dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="5dp">
 
@@ -285,7 +292,8 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="120dp"
                         android:layout_height="160dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="5dp">
 
@@ -790,8 +798,15 @@
             </LinearLayout>
             <!-- Kết thúc Ưu đãi -->
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
-
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCart"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/green"
+        app:borderWidth="0dp"
+        android:src="@drawable/ic_cart"
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
