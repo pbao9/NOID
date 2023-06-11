@@ -127,12 +127,12 @@ public class DetailActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            String cartItemId = database.child("orders").child(userId).push().getKey();
+            String cartItemId = database.child("orders").push().getKey();
             String note = edtNote.getText().toString();
             int updatedPrice = Integer.parseInt(productPrice) * count;
-            DBCart cartItem = new DBCart(productId, null, productPrice, String.valueOf(updatedPrice),note, count);
+            DBCart cartItem = new DBCart(userId, productId, null, productPrice, String.valueOf(updatedPrice),note, count);
             /*DBCart cartItem = new DBCart(null, null, null, null,null, null);*/
-            database.child("orders").child(userId).child(cartItemId).setValue(cartItem)
+            database.child("orders").child(cartItemId).setValue(cartItem)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
