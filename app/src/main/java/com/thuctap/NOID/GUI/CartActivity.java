@@ -252,7 +252,7 @@ public class CartActivity extends AppCompatActivity {
         if (currentUser != null) {
             String userId = currentUser.getUid();
             String orderId = database.child("dathang").push().getKey();
-            String currentTime = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            String currentTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
             String note = edtNote.getText().toString();
             int totalAmount = calculateTotalAmount();
             // Tạo một đối tượng DBOrder mới từ dữ liệu hiện tại

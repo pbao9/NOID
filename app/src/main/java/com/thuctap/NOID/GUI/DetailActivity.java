@@ -36,7 +36,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DetailActivity extends AppCompatActivity {
-    private TextView txtProductNameDetail, txtCountProduct, txtProductPriceDetail, txtProductDescDetail;
+    private TextView detailBack, txtProductNameDetail, txtCountProduct, txtProductPriceDetail, txtProductDescDetail;
     private Button btnTotal, btnUp, btnDown;
     private DatabaseReference database;
     private FirebaseAuth auth;
@@ -57,6 +57,7 @@ public class DetailActivity extends AppCompatActivity {
         txtCountProduct = findViewById(R.id.txtCountProduct);
         txtProductPriceDetail = findViewById(R.id.txtProductPriceDetail);
         txtProductDescDetail = findViewById(R.id.txtProductDescDetail);
+        detailBack = findViewById(R.id.detailBack);
         edtNote = findViewById(R.id.edtNote);
         btnTotal = findViewById(R.id.btnTotal);
         btnUp = findViewById(R.id.btnUp);
@@ -84,6 +85,13 @@ public class DetailActivity extends AppCompatActivity {
             txtProductPriceDetail.setText(formattedPrice);
             Picasso.get().load(productImage).into(imgProductDetail);
         }
+
+        detailBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btnDown.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +158,8 @@ public class DetailActivity extends AppCompatActivity {
                             }
                         }
                     });
+        } else {
+            Toast.makeText(this, "Vui lòng đăng nhập hoặc đăng kí tài khoản!", Toast.LENGTH_SHORT).show();
         }
     }
 }

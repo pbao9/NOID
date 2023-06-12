@@ -43,7 +43,6 @@ public class DatHangFragment extends Fragment {
         ViewCategoryAdapter viewCategoryAdapter = new ViewCategoryAdapter(getActivity());
         view_category.setAdapter(viewCategoryAdapter);
 
-        /* new TabLayoutMediator(tab_category, view_category, (tab, position) -> tab.setText(viewCategoryAdapter.getPageTitle(position))).attach();*/
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tab_category, view_category, (tab, position) -> {
             String title = viewCategoryAdapter.getPageTitle(position).toString();
             tab.setText(title);

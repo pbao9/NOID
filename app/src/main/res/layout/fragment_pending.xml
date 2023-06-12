@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.PendingFragment">
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/statusbar_gradient"
+        android:elevation="15dp">
+        <TextView
+            android:id="@+id/txtpendingBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_arrow_down"
+            android:drawableTint="#494949"
+            android:textColor="#494949"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_gravity="center"
+            android:text="Thời gian"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#494949"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_below="@+id/toolbarPending"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
     <TextView
+        android:id="@+id/txtNodata"
+        android:visibility="gone"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Không có dữ liệu" />
-
-</LinearLayout>
+</RelativeLayout>

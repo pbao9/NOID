@@ -92,7 +92,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             txtProductPrice = itemView.findViewById(R.id.txtProductPrice);
             imgProduct = itemView.findViewById(R.id.imgProduct);
             llnAdd = itemView.findViewById(R.id.llnAdd);
-
         }
     }
 }
