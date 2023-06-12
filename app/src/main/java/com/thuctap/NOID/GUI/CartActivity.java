@@ -38,6 +38,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
 
 public class CartActivity extends AppCompatActivity {
     private DatabaseReference database;
@@ -45,8 +46,9 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RelativeLayout relay1, relay2;
     private TextView txtPrice, txtTotalPrice, txtName, txtAddress, txtPhone, Back, txtAddProduct, txtEditProfile, txtRemoveCart, txtDayTime;
-    private Button btnDatHang, btnTotal;
+    private Button btnDatHang, btnOrder;
     private CartAdapter cartAdapter;
+    private EditText edtNote;
     private ArrayList<DBCart> cartItems;
 
     @Override
@@ -71,12 +73,13 @@ public class CartActivity extends AppCompatActivity {
         txtRemoveCart = findViewById(R.id.txtRemoveCart);
         txtDayTime = findViewById(R.id.txtDayTime);
         Back = findViewById(R.id.Back);
-        btnTotal = findViewById(R.id.btnTotal);
+        btnOrder = findViewById(R.id.btnOrder);
         btnDatHang = findViewById(R.id.btnDatHang);
         relay1 = findViewById(R.id.relay1);
         relay2 = findViewById(R.id.relay2);
+        edtNote = findViewById(R.id.edtNote);
         loadCartItems();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String currentDateAndTime = sdf.format(new Date());
 
         txtDayTime.setText(currentDateAndTime);
@@ -118,6 +121,13 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createOrder();
+            }
+        });
     }
 
 
@@ -146,7 +156,7 @@ public class CartActivity extends AppCompatActivity {
             });
 
 
-            database.child("cart").child(userId).addValueEventListener(new ValueEventListener() {
+            database.child("giohang").child(userId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     cartItems = new ArrayList<>();
@@ -185,16 +195,16 @@ public class CartActivity extends AppCompatActivity {
         // Combine duplicate items
         ArrayList<DBCart> combinedCartItems = new ArrayList<>();
         HashMap<String, DBCart> cartItemMap = new HashMap<>();
-        double totalPrice = 0;
+        int totalPrice = 0;
         for (DBCart cartItem : cartItems) {
-            String productId = cartItem.getProductId();
+            String productId = cartItem.getMasp();
             if (cartItemMap.containsKey(productId)) {
                 DBCart existingCartItem = cartItemMap.get(productId);
-                existingCartItem.setProductCount(existingCartItem.getProductCount() + cartItem.getProductCount());
+                existingCartItem.setSoluong(existingCartItem.getSoluong() + cartItem.getSoluong());
             } else {
                 cartItemMap.put(productId, cartItem);
             }
-            totalPrice += Double.parseDouble(cartItem.getProductTotalPrice());
+            totalPrice += cartItem.getTongtien();
         }
 
         combinedCartItems.addAll(cartItemMap.values());
@@ -208,14 +218,14 @@ public class CartActivity extends AppCompatActivity {
 
         txtPrice.setText(totalPriceText);
         txtTotalPrice.setText(totalWithExtraFeeText);
-        btnTotal.setText("Đặt Hàng " + "(" + totalWithExtraFeeText + ")");
+        btnOrder.setText("Đặt Hàng " + "(" + totalWithExtraFeeText + ")");
     }
 
     private void removeCart() {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            DatabaseReference ordersRef = database.child("cart");
+            DatabaseReference ordersRef = database.child("giohang");
 
             ordersRef.child(userId).removeValue()
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -235,6 +245,56 @@ public class CartActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void createOrder() {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            String orderId = database.child("dathang").push().getKey();
+            String currentTime = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            String note = edtNote.getText().toString();
+            int totalAmount = calculateTotalAmount();
+            // Tạo một đối tượng DBOrder mới từ dữ liệu hiện tại
+            DBOrder dbOrder = new DBOrder(userId, null, currentTime, note,"Đang giao", cartItems.size(), totalAmount, convertCartItemsToMap(cartItems));
+            dbOrder.setTongtiendh(totalAmount);
+            // Gửi đối tượng DBOrder đến nhánh "Order"
+            database.child("dathang").child(orderId).setValue(dbOrder)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Đặt hàng thành công
+                            // Xóa giỏ hàng sau khi đã đặt hàng
+                            removeCart();
+                            Toast.makeText(CartActivity.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Xử lý lỗi khi đặt hàng thất bại
+                            Toast.makeText(CartActivity.this, "Đặt hàng thất bại. Vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private Map<String, DBCart> convertCartItemsToMap(ArrayList<DBCart> cartItems) {
+        Map<String, DBCart> itemsMap = new HashMap<>();
+        for (DBCart cartItem : cartItems) {
+            itemsMap.put(cartItem.getMasp(), cartItem);
+        }
+        return itemsMap;
+    }
+
+
+    private int calculateTotalAmount() {
+        int totalAmount = 0;
+        for (DBCart cartItem : cartItems) {
+            totalAmount += cartItem.getTongtien();
+        }
+        totalAmount += 30000; // Cộng thêm 30,000, chi phí giao hàng phí tax đã tính vào giá sản phẩm
+        return totalAmount;
     }
 
 }

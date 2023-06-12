@@ -2,19 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/actionHome"
-        android:title="Trang chủ"
+        android:title="Trang Chủ"
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/actionOrder"
-        android:title="Giỏ hàng"
+        android:title="Đặt Hàng"
         android:icon="@drawable/ic_order"/>
     <item
-        android:id="@+id/actionStore"
-        android:icon="@drawable/ic_store"
-        android:title="Cửa hàng" />
-    <item
         android:id="@+id/actionHistory"
-        android:title="Hoạt động"
+        android:title="Hoạt Động"
         android:icon="@drawable/ic_history"/>
     <item
         android:id="@+id/actionOther"

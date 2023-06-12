@@ -2,93 +2,95 @@ package com.thuctap.NOID.Database;
 
 public class DBCart {
 
-    private String cartId, customerId, productId, productName, productPrice, productTotalPrice, productNoteCart, productTimeOrder;
-    private int productCount;
+    /*private String cartId, customerId, productId, productName, productPrice, productTotalPrice, productNoteCart, productTimeCart;*/
+    private String magiohang, makh, masp, tensp, ghichu, thoigian;
+    /*private int productCount;*/
+    private int soluong,giasp, tongtien;
 
     public DBCart() {
     }
 
-    public DBCart(String cartId, String customerId, String productId, String productName, String productPrice, String productTotalPrice, String productNoteCart, String productTimeOrder, int productCount) {
-        this.cartId = cartId;
-        this.customerId = customerId;
-        this.productId = productId;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productTotalPrice = productTotalPrice;
-        this.productNoteCart = productNoteCart;
-        this.productTimeOrder = productTimeOrder;
-        this.productCount = productCount;
+    public DBCart(String magiohang, String makh, String masp, String tensp, String ghichu, String thoigian, int soluong, int giasp, int tongtien) {
+        this.magiohang = magiohang;
+        this.makh = makh;
+        this.masp = masp;
+        this.tensp = tensp;
+        this.ghichu = ghichu;
+        this.thoigian = thoigian;
+        this.soluong = soluong;
+        this.giasp = giasp;
+        this.tongtien = tongtien;
     }
 
-    public String getCartId() {
-        return cartId;
+    public String getMagiohang() {
+        return magiohang;
     }
 
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
+    public void setMagiohang(String magiohang) {
+        this.magiohang = magiohang;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getMakh() {
+        return makh;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setMakh(String makh) {
+        this.makh = makh;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getMasp() {
+        return masp;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setMasp(String masp) {
+        this.masp = masp;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getTensp() {
+        return tensp;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
     }
 
-    public String getProductPrice() {
-        return productPrice;
+    public String getGhichu() {
+        return ghichu;
     }
 
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
+    public void setGhichu(String ghichu) {
+        this.ghichu = ghichu;
     }
 
-    public String getProductTotalPrice() {
-        return productTotalPrice;
+    public String getThoigian() {
+        return thoigian;
     }
 
-    public void setProductTotalPrice(String productTotalPrice) {
-        this.productTotalPrice = productTotalPrice;
+    public void setThoigian(String thoigian) {
+        this.thoigian = thoigian;
     }
 
-    public String getProductNoteCart() {
-        return productNoteCart;
+    public int getSoluong() {
+        return soluong;
     }
 
-    public void setProductNoteCart(String productNoteCart) {
-        this.productNoteCart = productNoteCart;
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
     }
 
-    public String getProductTimeOrder() {
-        return productTimeOrder;
+    public int getGiasp() {
+        return giasp;
     }
 
-    public void setProductTimeOrder(String productTimeOrder) {
-        this.productTimeOrder = productTimeOrder;
+    public void setGiasp(int giasp) {
+        this.giasp = giasp;
     }
 
-    public int getProductCount() {
-        return productCount;
+    public int getTongtien() {
+        return tongtien;
     }
 
-    public void setProductCount(int productCount) {
-        this.productCount = productCount;
+    public void setTongtien(int tongtien) {
+        this.tongtien = tongtien;
     }
 }

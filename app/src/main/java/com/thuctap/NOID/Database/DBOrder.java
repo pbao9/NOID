@@ -1,52 +1,88 @@
 package com.thuctap.NOID.Database;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class DBOrder {
-    private String customerName;
-    private String customerAddress;
-    private String customerPhone;
-    private ArrayList<DBCart> cartItems;
+    String makh, madh, thoigiandh, ghichudh, tinhtrang;
+    int soluongdh, tongtiendh;
+    private Map<String, DBCart> sanpham;
 
     public DBOrder() {
     }
 
-    public DBOrder(String customerName, String customerAddress, String customerPhone, ArrayList<DBCart> cartItems) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerPhone = customerPhone;
-        this.cartItems = cartItems;
+    public DBOrder(String makh, String madh, String thoigiandh, String ghichudh, String tinhtrang, int soluongdh, int tongtiendh, Map<String, DBCart> sanpham) {
+        this.makh = makh;
+        this.madh = madh;
+        this.thoigiandh = thoigiandh;
+        this.ghichudh = ghichudh;
+        this.tinhtrang = tinhtrang;
+        this.soluongdh = soluongdh;
+        this.tongtiendh = tongtiendh;
+        this.sanpham = sanpham;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getMakh() {
+        return makh;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setMakh(String makh) {
+        this.makh = makh;
     }
 
-    public String getCustomerAddress() {
-        return customerAddress;
+    public String getMadh() {
+        return madh;
     }
 
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
+    public void setMadh(String madh) {
+        this.madh = madh;
     }
 
-    public String getCustomerPhone() {
-        return customerPhone;
+    public String getThoigiandh() {
+        return thoigiandh;
     }
 
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
+    public void setThoigiandh(String thoigiandh) {
+        this.thoigiandh = thoigiandh;
     }
 
-    public ArrayList<DBCart> getCartItems() {
-        return cartItems;
+    public String getGhichudh() {
+        return ghichudh;
     }
 
-    public void setCartItems(ArrayList<DBCart> cartItems) {
-        this.cartItems = cartItems;
+    public void setGhichudh(String ghichudh) {
+        this.ghichudh = ghichudh;
+    }
+
+    public String getTinhtrang() {
+        return tinhtrang;
+    }
+
+    public void setTinhtrang(String tinhtrang) {
+        this.tinhtrang = tinhtrang;
+    }
+
+    public int getSoluongdh() {
+        return soluongdh;
+    }
+
+    public void setSoluongdh(int soluongdh) {
+        this.soluongdh = soluongdh;
+    }
+
+    public int getTongtiendh() {
+        return tongtiendh;
+    }
+
+    public void setTongtiendh(int tongtiendh) {
+        this.tongtiendh = tongtiendh;
+    }
+
+    public Map<String, DBCart> getSanpham() {
+        return sanpham;
+    }
+
+    public void setSanpham(Map<String, DBCart> sanpham) {
+        this.sanpham = sanpham;
     }
 }

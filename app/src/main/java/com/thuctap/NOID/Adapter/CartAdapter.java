@@ -35,11 +35,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DBCart cartItem = cartItems.get(position);
-        holder.productCartName.setText(cartItem.getProductName());
-        holder.productCartCount.setText("(" + String.valueOf(cartItem.getProductCount()) + "x) ");
+        holder.productCartName.setText(cartItem.getTensp());
+        holder.productCartCount.setText("(" + String.valueOf(cartItem.getSoluong()) + "x) ");
 
-        int totalProductPrice = Integer.parseInt(cartItem.getProductPrice());
-        int updatedPrice = Integer.parseInt(cartItem.getProductPrice()) * cartItem.getProductCount();
+        /*int totalProductPrice = cartItem.getGiasp();*/
+        int updatedPrice = cartItem.getGiasp() * cartItem.getSoluong();
         DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
         String formattedPrice = decimalFormat.format(updatedPrice);
         holder.productCartPrice.setText(formattedPrice);

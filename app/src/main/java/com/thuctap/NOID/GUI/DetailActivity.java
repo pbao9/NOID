@@ -130,15 +130,15 @@ public class DetailActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            String cartItemId = database.child("cart").push().getKey();
+            String cartItemId = database.child("giohang").push().getKey();
             String note = edtNote.getText().toString();
             int updatedPrice = Integer.parseInt(productPrice) * count;
             // Lấy ngày giờ hiện tại
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             String currentDateAndTime = sdf.format(new Date());
-            DBCart cartItem = new DBCart(null, userId, productId, productName, productPrice, String.valueOf(updatedPrice), note, currentDateAndTime, count);
+            DBCart cartItem = new DBCart(null, null, productId, productName, note, currentDateAndTime, count, Integer.parseInt(productPrice), updatedPrice);
 
-            database.child("cart").child(userId).child(cartItemId).setValue(cartItem)
+            database.child("giohang").child(userId).child(cartItemId).setValue(cartItem)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
