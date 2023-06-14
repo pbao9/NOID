@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.HistoryFragment">
-
-    <TextView
-        android:gravity="center"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="10dp"
+        android:id="@+id/recyclerViewHistory"
+        tools:listitem="@layout/custom_recyclerview_history"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Không có dữ liệu" />
-
-</LinearLayout>
+        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/txtnoData"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:text="Không có dữ liệu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class DBOrder {
-    String makh, madh, thoigiandh, ghichudh, tinhtrang;
+    String makh,madh, thoigiandh, ghichudh, tinhtrang;
     int soluongdh, tongtiendh;
     private Map<String, DBCart> sanpham;
 

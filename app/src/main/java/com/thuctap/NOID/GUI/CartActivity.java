@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.Adapter.CartAdapter;
+import com.thuctap.NOID.Adapter.HistoryAdapter;
 import com.thuctap.NOID.Database.DBCart;
 import com.thuctap.NOID.Database.DBOrder;
 import com.thuctap.NOID.R;
@@ -50,6 +51,7 @@ public class CartActivity extends AppCompatActivity {
     private CartAdapter cartAdapter;
     private EditText edtNote;
     private ArrayList<DBCart> cartItems;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,9 +258,9 @@ public class CartActivity extends AppCompatActivity {
             String note = edtNote.getText().toString();
             int totalAmount = calculateTotalAmount();
             // Tạo một đối tượng DBOrder mới từ dữ liệu hiện tại
-            DBOrder dbOrder = new DBOrder(userId, null, currentTime, note,"Đang giao", cartItems.size(), totalAmount, convertCartItemsToMap(cartItems));
+            DBOrder dbOrder = new DBOrder(userId, " ", currentTime, note, "Đang giao", cartItems.size(), totalAmount, convertCartItemsToMap(cartItems));
             dbOrder.setTongtiendh(totalAmount);
-            // Gửi đối tượng DBOrder đến nhánh "Order"
+            // Gửi đối tượng DBOrder đến nhánh "dathang"
             database.child("dathang").child(orderId).setValue(dbOrder)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

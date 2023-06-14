@@ -1,10 +1,7 @@
 package com.thuctap.NOID.Database;
 
 public class DBCart {
-
-    /*private String cartId, customerId, productId, productName, productPrice, productTotalPrice, productNoteCart, productTimeCart;*/
     private String magiohang, makh, masp, tensp, ghichu, thoigian;
-    /*private int productCount;*/
     private int soluong,giasp, tongtien;
 
     public DBCart() {

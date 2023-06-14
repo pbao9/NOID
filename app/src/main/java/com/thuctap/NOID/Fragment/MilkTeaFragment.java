@@ -37,7 +37,7 @@ public class MilkTeaFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        String milktea = "-NXOrczCnri2fMR2gUWP"; // Mã danh mục Trà sữa
+        String milktea = "-NX9r4LR1f6twnVU28_R"; // Mã danh mục Trà sữa
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("sanpham");
         Query query_milktea = databaseRef.orderByChild("madm").equalTo(milktea);
         /* Danh  mục Trà sữa */

@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Corn"
         tools:targetApi="31">
         <activity
+            android:name=".GUI.HistoryDetailActivity"
+            android:exported="false" ></activity>
+        <activity
             android:name=".GUI.CartActivity"
             android:exported="false" />
         <activity

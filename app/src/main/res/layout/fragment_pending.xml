@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     tools:context=".Fragment.PendingFragment">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPending"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/statusbar_gradient"
         android:elevation="15dp">
+
         <TextView
             android:id="@+id/txtpendingBack"
             android:layout_width="wrap_content"
@@ -18,25 +22,91 @@
             android:drawableTint="#494949"
             android:textColor="#494949"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/txtTime"
-            android:layout_gravity="center"
-            android:text="Thời gian"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Thời gian"
             android:textColor="#494949"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
+
     <RelativeLayout
-        android:layout_below="@+id/toolbarPending"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </RelativeLayout>
-    <TextView
-        android:id="@+id/txtNodata"
-        android:visibility="gone"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Không có dữ liệu" />
+        android:layout_below="@+id/toolbarPending">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="5sp"
+            android:text="Mã đặt hàng" />
+
+        <TextView
+            android:id="@+id/txtIDProductPending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="15sp"
+            android:text="mã tự sinh" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_below="@id/txtIDProductPending"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/white"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginTop="10dp"
+                    android:text="NOID COFFEE - 390 Hoàng Văn Thụ"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Tình trạng" />
+
+                <TextView
+                    android:id="@+id/txtAddressOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtStatus"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="5sp"
+                    android:text="Địa chỉ giao hàng"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtNodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Không có dữ liệu"
+        android:visibility="gone" />
 </RelativeLayout>

@@ -39,7 +39,7 @@ public class CoffeeFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        String cafe = "-NX9r4LR1f6twnVU28_R"; // Mã danh mục Cafe
+        String cafe = "-NX9ppXXBjY8T0_6wBy5"; // Mã danh mục Cafe
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("sanpham");
         Query query_cafe = databaseRef.orderByChild("madm").equalTo(cafe);
 

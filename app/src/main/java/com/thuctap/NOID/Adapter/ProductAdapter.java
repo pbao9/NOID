@@ -28,7 +28,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     private List<DBProduct> productList;
     private DatabaseReference databaseReference;
 
-
     public ProductAdapter(List<DBProduct> productList) {
 
         this.productList = productList;
