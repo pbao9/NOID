@@ -49,7 +49,6 @@ public class Infomation extends AppCompatActivity {
         addView();
 
         auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
         reference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = auth.getCurrentUser();
         String userId = currentUser.getUid();

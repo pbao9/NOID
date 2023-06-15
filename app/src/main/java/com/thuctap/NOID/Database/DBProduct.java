@@ -12,6 +12,10 @@ public class DBProduct {
         this.imageURl = imageURl;
     }
 
+    public DBProduct() {
+
+    }
+
     public String getId() {
         return id;
     }

@@ -1,68 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/txtText"
-        android:text="Đơn hàng ngày: "
-        android:textColor="@color/black"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/txtDateOrder"
-        android:layout_below="@id/txtText"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="12/06/2023, 15:03"
-        android:textColor="@color/lightblack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/txtStatus"
-        android:layout_below="@id/txtText"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Tình trạng"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/lightblack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <TextView
-        android:id="@+id/txtTotalPriceOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="59.000 đ"
-        android:textColor="@color/lightblack" />
-    <Button
-        android:id="@+id/btnReOrder"
-        android:layout_below="@id/txtDateOrder"
-        android:layout_marginTop="5sp"
-        android:layout_marginLeft="10dp"
-        android:background="@color/transparent"
-        android:drawableEnd="@drawable/ic_continue"
-        android:drawablePadding="5sp"
-        android:text="Chi tiết đơn hàng"
-        android:textAllCaps="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <View
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="6sp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/gray"
-        android:layout_below="@id/btnReOrder"
+    <androidx.cardview.widget.CardView
+        android:layout_margin="5sp"
+        app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"/>
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="Đơn hàng ngày: "
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/txtDateOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="12/06/2023, 15:03"
+                android:textColor="@color/lightblack" />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtText"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Tình trạng"
+                android:textColor="@color/lightblack" />
+
+
+            <TextView
+                android:id="@+id/txtTotalPriceOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="59.000 đ"
+                android:textColor="@color/lightblack" />
+
+            <Button
+                android:id="@+id/btnReOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDateOrder"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5sp"
+                android:background="@color/transparent"
+                android:drawableEnd="@drawable/ic_continue"
+                android:drawablePadding="5sp"
+                android:text="Chi tiết đơn hàng"
+                android:textAllCaps="false" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

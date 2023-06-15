@@ -258,10 +258,10 @@ public class CartActivity extends AppCompatActivity {
             String note = edtNote.getText().toString();
             int totalAmount = calculateTotalAmount();
             // Tạo một đối tượng DBOrder mới từ dữ liệu hiện tại
-            DBOrder dbOrder = new DBOrder(userId, " ", currentTime, note, "Đang giao", cartItems.size(), totalAmount, convertCartItemsToMap(cartItems));
+            DBOrder dbOrder = new DBOrder(userId, currentTime, note, "Đang giao", cartItems.size(), totalAmount, convertCartItemsToMap(cartItems));
             dbOrder.setTongtiendh(totalAmount);
             // Gửi đối tượng DBOrder đến nhánh "dathang"
-            database.child("dathang").child(orderId).setValue(dbOrder)
+            database.child("dathang").push().setValue(dbOrder)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

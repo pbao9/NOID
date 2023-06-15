@@ -71,41 +71,13 @@
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/reyclerViewHistory"
+                android:id="@+id/reyclerViewDetailHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDate"
+                android:layout_centerInParent="true"
                 tools:listitem="@layout/custom_recyclerview_cart" />
-            <View
-                android:id="@+id/view1"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="6sp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/gray"
-                android:layout_below="@id/reyclerViewHistory"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"/>
-            <TextView
-                android:id="@+id/txtItem"
-                android:layout_marginTop="5sp"
-                android:layout_marginLeft="13sp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/view1"
-                android:text="Tạm tính" />
 
-            <TextView
-                android:id="@+id/txtPriceHistory"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="5sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/view1"
-                android:text="29.000 đ" />
             <TextView
                 android:id="@+id/txtPhiGiaoHang"
                 android:layout_marginTop="10dp"
@@ -113,7 +85,7 @@
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtItem"
+                android:layout_below="@+id/reyclerViewDetailHistory"
                 android:text="Phí giao hàng: " />
             <TextView
                 android:id="@+id/txtShipCost"
@@ -123,14 +95,14 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtItem"
+                android:layout_below="@+id/reyclerViewDetailHistory"
                 android:text="30.000 đ" />
             <View
                 android:id="@+id/view2"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10sp"
-                android:background="@color/gray"
+                android:background="@color/lightblack"
                 android:layout_below="@id/txtShipCost"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"/>
@@ -161,7 +133,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10sp"
-                android:background="@color/gray"
+                android:background="@color/lightblack"
                 android:layout_below="@id/txtTotalPriceHistory"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"/>
@@ -193,7 +165,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10sp"
-                android:background="@color/gray"
+                android:background="@color/lightblack"
                 android:layout_below="@id/txtPhuongThucThanhToan"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"/>
@@ -289,15 +261,16 @@
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="100dp">
+
         <Button
-            android:id="@+id/btnDatLai"
-            android:layout_centerInParent="true"
-            android:text="Đặt lại"
-            android:layout_gravity="center"
+            android:id="@+id/btnDatHang"
             android:layout_width="360dp"
-            android:textAllCaps="false"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:background="@drawable/button_rounded"
-            android:layout_height="wrap_content"/>
+            android:text="Đặt Hàng"
+            android:textAllCaps="false" />
 
     </RelativeLayout>
 </RelativeLayout>
