@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:text="Lịch sử đơn hàng"
+            android:text="Chi tiết lịch sử đơn hàng"
             android:textColor="#494949"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
@@ -70,25 +70,25 @@
                 android:text="Không có dữ liệu"
                 android:visibility="gone" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/reyclerViewDetailHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtDate"
-                android:layout_centerInParent="true"
-                tools:listitem="@layout/custom_recyclerview_cart" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reyclerViewDetailHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtDate"
+                    android:layout_centerInParent="true"
+                    tools:listitem="@layout/custom_recyclerview_cart" />
 
             <TextView
-                android:id="@+id/txtPhiGiaoHang"
+                android:id="@+id/txtTamTinh"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="13sp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/reyclerViewDetailHistory"
-                android:text="Phí giao hàng: " />
+                android:text="Tạm tính:  " />
             <TextView
-                android:id="@+id/txtShipCost"
+                android:id="@+id/txtPriceBefore"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10sp"
                 android:textColor="@color/black"
@@ -96,6 +96,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/reyclerViewDetailHistory"
+                android:text="30.000 đ" />
+            <View
+                android:id="@+id/view1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/lightblack"
+                android:layout_below="@id/txtPriceBefore"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"/>
+            <TextView
+                android:id="@+id/txtPhiGiaoHang"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTamTinh"
+                android:text="Phí giao hàng: " />
+            <TextView
+                android:id="@+id/txtShipCost"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTamTinh"
                 android:text="30.000 đ" />
             <View
                 android:id="@+id/view2"

@@ -40,7 +40,6 @@ public class HistoryFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dathangRef = database.getReference("dathang");
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
@@ -52,11 +51,11 @@ public class HistoryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(historyAdapter);
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+/*        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-            String userId = currentUser.getUid();
-            String tinhtrang = "Đã giao";
-            dathangRef.orderByChild("makh").equalTo(userId).addValueEventListener(new ValueEventListener() {
+            String userId = currentUser.getUid();*/
+            String tinhtrang = "Đang chờ xác nhận";
+            dathangRef/*.orderByChild("makh").equalTo(userId)*/.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     orderList.clear();
@@ -74,8 +73,7 @@ public class HistoryFragment extends Fragment {
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
-        }
-
+       /* }*/
         return view;
     }
 }

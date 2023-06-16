@@ -14,22 +14,22 @@ import com.thuctap.NOID.R;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class HistoryDetailAdapter extends RecyclerView.Adapter<HistoryDetailAdapter.ViewHolder> {
+public class PendingDetailAdapter extends RecyclerView.Adapter<PendingDetailAdapter.ViewHolder>{
     private List<DBCart> cartList;
 
-    public HistoryDetailAdapter(List<DBCart> cartList) {
+    public PendingDetailAdapter(List<DBCart> cartList) {
         this.cartList = cartList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtProductCartCount, txtProductCartName, txtProductCartPrice, txtPriceBefore;
+        public TextView txtProductCartCountPending, txtProductCartNamePending, txtProductCartPricePending, txtPriceBeforePending;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            txtProductCartCount = itemView.findViewById(R.id.txtProductCartCount);
-            txtProductCartName = itemView.findViewById(R.id.txtProductCartName);
-            txtProductCartPrice = itemView.findViewById(R.id.txtProductCartPrice);
-            txtPriceBefore = itemView.findViewById(R.id.txtPriceBefore);
+            txtProductCartCountPending = itemView.findViewById(R.id.txtProductCartCount);
+            txtProductCartNamePending = itemView.findViewById(R.id.txtProductCartName);
+            txtProductCartPricePending = itemView.findViewById(R.id.txtProductCartPrice);
+            txtPriceBeforePending = itemView.findViewById(R.id.txtPriceBefore);
         }
     }
 
@@ -43,15 +43,13 @@ public class HistoryDetailAdapter extends RecyclerView.Adapter<HistoryDetailAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DBCart cartItem = cartList.get(position);
-        holder.txtProductCartCount.setText(String.valueOf(cartItem.getSoluong()) + "x");
-        holder.txtProductCartName.setText(cartItem.getTensp());
+        holder.txtProductCartCountPending.setText(String.valueOf(cartItem.getSoluong()) + "x");
+        holder.txtProductCartNamePending.setText(cartItem.getTensp());
 
         double price = cartItem.getGiasp() * cartItem.getSoluong();
         DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
         String formattedPrice = decimalFormat.format(price);
-        holder.txtProductCartPrice.setText(formattedPrice);
-
-
+        holder.txtProductCartPricePending.setText(formattedPrice);
     }
 
     @Override
@@ -59,4 +57,3 @@ public class HistoryDetailAdapter extends RecyclerView.Adapter<HistoryDetailAdap
         return cartList.size();
     }
 }
-

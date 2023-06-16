@@ -3,15 +3,16 @@ package com.thuctap.NOID.Database;
 import java.util.Map;
 
 public class DBOrder {
-    String makh, thoigiandh, ghichudh, tinhtrang;
+    String makh, madh, thoigiandh, ghichudh, tinhtrang;
     int soluongdh, tongtiendh;
     private Map<String, DBCart> sanpham;
 
     public DBOrder() {
     }
 
-    public DBOrder(String makh, String thoigiandh, String ghichudh, String tinhtrang, int soluongdh, int tongtiendh, Map<String, DBCart> sanpham) {
+    public DBOrder(String makh, String madh, String thoigiandh, String ghichudh, String tinhtrang, int soluongdh, int tongtiendh, Map<String, DBCart> sanpham) {
         this.makh = makh;
+        this.madh = madh;
         this.thoigiandh = thoigiandh;
         this.ghichudh = ghichudh;
         this.tinhtrang = tinhtrang;
@@ -26,6 +27,14 @@ public class DBOrder {
 
     public void setMakh(String makh) {
         this.makh = makh;
+    }
+
+    public String getMadh() {
+        return madh;
+    }
+
+    public void setMadh(String madh) {
+        this.madh = madh;
     }
 
     public String getThoigiandh() {

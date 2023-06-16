@@ -30,93 +30,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/*public class HistoryDetailActivity extends AppCompatActivity {
-    private DatabaseReference dathangDB;
-    private DatabaseReference khachHangDB;
-    private DatabaseReference database;
-    private RecyclerView recyclerViewHistory;
-    private TextView txtDate, txtPriceHistory, txtShipCost, txtTotalPriceHistory, txtMaDH, txtMaKH, txtTenKH, txtSDT, txtDC, txtpendingBack;
-    private FirebaseAuth auth;
-    private HistoryAdapter adapter, adapterCart;
-    private List<DBOrder> orderList;
-    private List<DBCart> cartList;
-
-    private String makh, tongtiendonhang, thoigian, madh, tensp;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Window window = getWindow();
-        window.setBackgroundDrawableResource(R.drawable.statusbar_gradient);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_detail);
-        dathangDB = FirebaseDatabase.getInstance().getReference("dathang");
-        khachHangDB = FirebaseDatabase.getInstance().getReference("taikhoan");
-
-        orderList = new ArrayList<>();
-        adapter = new HistoryAdapter(orderList);
-
-        *//*cartList = new ArrayList<>();
-        adapterCart = new HistoryAdapter(cartList);*//*
-
-        recyclerViewHistory = findViewById(R.id.reyclerViewDetailHistory);
-        recyclerViewHistory.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewHistory.setAdapter(adapter);
-
-        txtpendingBack = findViewById(R.id.txtpendingBack);
-        txtMaDH = findViewById(R.id.txtMaDH);
-        txtTenKH = findViewById(R.id.txtTenKH);
-        txtSDT = findViewById(R.id.txtSDT);
-        txtDC = findViewById(R.id.txtDC);
-        txtDate = findViewById(R.id.txtDate);
-        txtTotalPriceHistory = findViewById(R.id.txtTotalPriceHistory);
-
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance().getReference();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        String userId = currentUser.getUid();
-        if (currentUser != null) {
-            database.child("taikhoan").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        String name = snapshot.child("name").getValue(String.class);
-                        String phone = snapshot.child("phone").getValue(String.class);
-                        String address = snapshot.child("address").getValue(String.class);
-
-                        txtTenKH.setText(name);
-                        txtDC.setText(address);
-                        txtSDT.setText(phone);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-
-        Intent intent = getIntent();
-        String orderKey = intent.getStringExtra("KeyDH");
-        txtMaDH.setText(orderKey);
-
-
-        txtpendingBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
-}*/
-
-
 public class HistoryDetailActivity extends AppCompatActivity {
     private DatabaseReference dathangDB;
     private DatabaseReference khachHangDB;
     private DatabaseReference database;
     private RecyclerView recyclerViewHistory;
-    private TextView txtDate, txtPriceHistory, txtShipCost, txtTotalPriceHistory, txtMaDH, txtMaKH, txtTenKH, txtSDT, txtDC, txtpendingBack, txtProductCartCount, txtProductCartName, txtProductCartPrice;
+    private TextView txtDate, txtPriceHistory, txtPriceBefore, txtShipCost, txtTotalPriceHistory, txtMaDH, txtMaKH, txtTenKH, txtSDT, txtDC, txtpendingBack, txtProductCartCount, txtProductCartName, txtProductCartPrice;
     private FirebaseAuth auth;
     private HistoryAdapter adapter;
     private HistoryDetailAdapter adapterHistoryDetail;
@@ -151,9 +70,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
         txtDC = findViewById(R.id.txtDC);
         txtDate = findViewById(R.id.txtDate);
         txtTotalPriceHistory = findViewById(R.id.txtTotalPriceHistory);
-/*        txtProductCartCount = findViewById(R.id.txtProductCartCount);
-        txtProductCartName = findViewById(R.id.txtProductCartName);
-        txtProductCartPrice = findViewById(R.id.txtProductCartPrice);*/
+        txtPriceBefore = findViewById(R.id.txtPriceBefore);
         btnDatHang = findViewById(R.id.btnDatHang);
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override

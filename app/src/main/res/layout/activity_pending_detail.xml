@@ -1,9 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".GUI.PendingDetailActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/statusbar_gradient"
+        android:elevation="15dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txtpendingBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_back"
+            android:drawableTint="#494949"
+            android:textColor="#494949"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Chi tiết đơn hàng"
+            android:textColor="#494949"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/toolbarPending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtStore"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="15sp"
+                android:gravity="center"
+                android:text="NOID COFFEE - Hoàng Văn Thụ"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtStore"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="15dp"
+                android:text="01/11/2023 11:11" />
+
+            <TextView
+                android:id="@+id/txtNodata"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Không có dữ liệu"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reyclerViewDetailChiTietDonHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDate"
+                android:layout_centerInParent="true"
+                tools:listitem="@layout/custom_recyclerview_cart" />
+
+            <TextView
+                android:id="@+id/txtTamTinh"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reyclerViewDetailChiTietDonHang"
+                android:text="Tạm tính:  " />
+            <TextView
+                android:id="@+id/txtPriceBefore"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reyclerViewDetailChiTietDonHang"
+                android:text="30.000 đ" />
+            <View
+                android:id="@+id/view1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/lightblack"
+                android:layout_below="@id/txtPriceBefore"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"/>
+            <TextView
+                android:id="@+id/txtPhiGiaoHang"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTamTinh"
+                android:text="Phí giao hàng: " />
+            <TextView
+                android:id="@+id/txtShipCost"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTamTinh"
+                android:text="30.000 đ" />
+            <View
+                android:id="@+id/view2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10sp"
+                android:background="@color/lightblack"
+                android:layout_below="@id/txtShipCost"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"/>
+
+            <TextView
+                android:id="@+id/txtTextTongCong"
+                android:layout_below="@+id/view2"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Tổng cộng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtTotalPriceHistory"
+                android:layout_below="@+id/view2"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="59.000 đ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <View
+                android:id="@+id/view3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10sp"
+                android:background="@color/lightblack"
+                android:layout_below="@id/txtTotalPriceHistory"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"/>
+
+            <TextView
+                android:id="@+id/txtTextThanhToan"
+                android:layout_below="@+id/view3"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Thanh toán"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtPhuongThucThanhToan"
+                android:layout_below="@+id/view3"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Tiền mặt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10sp"
+                android:background="@color/lightblack"
+                android:layout_below="@id/txtPhuongThucThanhToan"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"/>
+
+            <TextView
+                android:id="@+id/txtTextMADH"
+                android:layout_below="@+id/view4"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Mã đơn hàng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtMaDH"
+                android:layout_below="@+id/view4"
+                android:layout_toRightOf="@id/txtTextMADH"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="45dp"
+                android:textColor="@color/lightblack"
+                android:layout_marginTop="10dp"
+                android:text="Mã đơn đặt hàng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtTextTenKH"
+                android:layout_below="@+id/txtMaDH"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Tên"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtTenKH"
+                android:layout_below="@+id/txtMaDH"
+                android:layout_toRightOf="@id/txtTextMADH"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="45dp"
+                android:textColor="@color/lightblack"
+                android:layout_marginTop="10dp"
+                android:text="Nguyễn Văn A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtTextSDT"
+                android:layout_below="@+id/txtTenKH"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Số Điện Thoại"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtSDT"
+                android:layout_below="@+id/txtTenKH"
+                android:layout_toRightOf="@id/txtTextMADH"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="45dp"
+                android:textColor="@color/lightblack"
+                android:layout_marginTop="10dp"
+                android:text="0987654321"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtTextDC"
+                android:layout_below="@+id/txtSDT"
+                android:layout_marginLeft="13sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Địa Chỉ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtDC"
+                android:layout_below="@+id/txtSDT"
+                android:layout_toRightOf="@id/txtTextMADH"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="45dp"
+                android:textColor="@color/lightblack"
+                android:layout_marginTop="10dp"
+                android:text="390 Hoàng Văn Thụ, P.4, Q. Tân Bình"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtStatusPending"
+                android:layout_below="@+id/txtStore"
+                android:textColor="@color/lightblack"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textStyle="bold"
+                android:text="Đang chờ xác nhận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="100dp">
+
+        <Button
+            android:id="@+id/btnXacNhan"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@drawable/button_rounded"
+            android:text="Xác nhận đã nhận Hàng"
+            android:visibility="gone"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
+</RelativeLayout>
