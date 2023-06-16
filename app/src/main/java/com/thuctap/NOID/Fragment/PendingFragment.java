@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +38,7 @@ import java.util.List;
 public class PendingFragment extends Fragment {
     private RecyclerView recyclerView;
     private PendingAdapter pendingAdapter;
+    private TextView txtNoAccount, txtNoData;
     private List<DBOrder> orderList;
     private List<String> orderKeys;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -47,6 +49,8 @@ public class PendingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pending, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerViewPending);
+        txtNoAccount = view.findViewById(R.id.txtNoAccountPending);
+        txtNoData = view.findViewById(R.id.txtNoDataPending);
         orderList = new ArrayList<>();
 
         pendingAdapter = new PendingAdapter(orderList);
@@ -57,6 +61,8 @@ public class PendingFragment extends Fragment {
         if (currentUser != null) {
             String userId = currentUser.getUid();
             String tinhtrang = "Đang chờ xác nhận";
+            String tinhtrang1 = "Đang giao";
+            txtNoAccount.setVisibility(View.GONE);
             dathangRef.orderByChild("makh").equalTo(userId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,17 +70,28 @@ public class PendingFragment extends Fragment {
                     for (DataSnapshot orderSnapshot : snapshot.getChildren()) {
                         DBOrder order = orderSnapshot.getValue(DBOrder.class);
 
-                        if (order.getTinhtrang().equals(tinhtrang)) {
+                        if (order.getTinhtrang().equals(tinhtrang) || order.getTinhtrang().equals(tinhtrang1)) {
                             orderList.add(order);
                         }
                     }
                     pendingAdapter.notifyDataSetChanged();
+                    if (orderList.isEmpty()) {
+                        // Không có thông tin đơn hàng
+                        txtNoData.setVisibility(View.VISIBLE);
+                    } else {
+                        // Có thông tin đơn hàng
+                        txtNoData.setVisibility(View.GONE);
+                    }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
+        }else {
+            // Không có tài khoản đăng nhập
+            txtNoAccount.setVisibility(View.VISIBLE);
+            txtNoData.setVisibility(View.GONE);
         }
         return view;
     }

@@ -13,10 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <TextView
-        android:id="@+id/txtNodata"
+        android:id="@+id/txtNoAccountPending"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Không có dữ liệu"
-        android:visibility="gone" />
+        android:text="Vui lòng đăng nhập"
+        android:visibility="visible" />
+    <TextView
+        android:id="@+id/txtNoDataPending"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Chưa có dữ liệu"
+        android:visibility="visible" />
 </RelativeLayout>

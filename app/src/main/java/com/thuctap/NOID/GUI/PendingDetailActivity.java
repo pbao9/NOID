@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +32,7 @@ import com.thuctap.NOID.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +42,7 @@ public class PendingDetailActivity extends AppCompatActivity {
     private DatabaseReference khachHangDB;
     private DatabaseReference database;
     private RecyclerView recyclerViewPending;
-    private TextView txtDate, txtPriceHistory, txtPriceBefore, txtShipCost, txtTotalPriceHistory, txtMaDH, txtMaKH, txtTenKH, txtSDT, txtDC, txtpendingBack, txtProductCartCount, txtProductCartName, txtProductCartPrice;
+    private TextView txtDate, txtStatusPending, txtPriceHistory, txtNodata, txtPriceBefore, txtShipCost, txtTotalPriceHistory, txtMaDH, txtMaKH, txtTenKH, txtSDT, txtDC, txtpendingBack, txtProductCartCount, txtProductCartName, txtProductCartPrice;
     private FirebaseAuth auth;
     private PendingAdapter pendingAdapter;
     private PendingDetailAdapter pendingDetailAdapter;
@@ -68,9 +71,11 @@ public class PendingDetailActivity extends AppCompatActivity {
         recyclerViewPending.setAdapter(pendingDetailAdapter);
 
         txtpendingBack = findViewById(R.id.txtpendingBack);
+        txtStatusPending = findViewById(R.id.txtStatusPending);
         txtMaDH = findViewById(R.id.txtMaDH);
         txtTenKH = findViewById(R.id.txtTenKH);
         txtSDT = findViewById(R.id.txtSDT);
+        txtNodata = findViewById(R.id.txtNodata);
         txtDC = findViewById(R.id.txtDC);
         txtDate = findViewById(R.id.txtDate);
         txtTotalPriceHistory = findViewById(R.id.txtTotalPriceHistory);
@@ -106,7 +111,10 @@ public class PendingDetailActivity extends AppCompatActivity {
                                     DBOrder order = snapshot.getValue(DBOrder.class);
                                     if (order != null) {
                                         txtDate.setText(order.getThoigiandh());
-
+                                        txtStatusPending.setText(order.getTinhtrang());
+                                        if (order.getTinhtrang().equals("Đang giao")) {
+                                            btnXacNhan.setVisibility(View.VISIBLE);
+                                        }
                                         /*Tổng tiền*/
                                         double updatedPrice = order.getTongtiendh();
                                         DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
@@ -148,6 +156,45 @@ public class PendingDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        btnXacNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Lấy orderKey từ intent
+                Intent intent = getIntent();
+                String orderKey = intent.getStringExtra("orderKey");
+
+                // Tạo đối tượng Map để cập nhật trường tinhtrang
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("tinhtrang", "Đã giao");
+
+                // Sử dụng DatabaseReference để cập nhật dữ liệu
+                DatabaseReference orderRef = dathangDB.child(orderKey);
+                orderRef.updateChildren(updateData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Cập nhật thành công
+                                Toast.makeText(PendingDetailActivity.this, "Đã cập nhật trạng thái thành 'Đã giao'", Toast.LENGTH_SHORT).show();
+
+                                // Chuyển đến MainActivity (hoặc màn hình khác) sau khi cập nhật thành công
+                                Intent intent = new Intent(PendingDetailActivity.this, MainActivity.class);
+                                intent.putExtra("fragmentIndex", 2);
+                                startActivity(intent);
+
+                                // Kết thúc Activity hiện tại
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Cập nhật thất bại
+                                Toast.makeText(PendingDetailActivity.this, "Có lỗi xảy ra. Vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 

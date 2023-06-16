@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +35,7 @@ public class HistoryFragment extends Fragment {
     private RecyclerView recyclerView;
     ;
     private HistoryAdapter historyAdapter;
+    private TextView txtNoAccount, txtNoData;
     private Button btnReOrder;
     private List<DBOrder> orderList;
     private List<String> orderKeys;
@@ -44,6 +46,8 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewHistory);
+        txtNoAccount = view.findViewById(R.id.txtNoAccountHistory);
+        txtNoData = view.findViewById(R.id.txtNoDataHistory);
         orderList = new ArrayList<>();
         /*cartList = new ArrayList<>();*/
 
@@ -67,12 +71,23 @@ public class HistoryFragment extends Fragment {
                         }
                     }
                     historyAdapter.notifyDataSetChanged();
+                    if (orderList.isEmpty()) {
+                        // Không có thông tin đơn hàng
+                        txtNoData.setVisibility(View.VISIBLE);
+                    } else {
+                        // Có thông tin đơn hàng
+                        txtNoData.setVisibility(View.GONE);
+                    }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
+        }else {
+            // Không có tài khoản đăng nhập
+            txtNoAccount.setVisibility(View.VISIBLE);
+            txtNoData.setVisibility(View.GONE);
         }
         return view;
     }

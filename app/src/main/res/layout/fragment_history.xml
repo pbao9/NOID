@@ -12,10 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <TextView
-        android:id="@+id/txtnoData"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:text="Không có dữ liệu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/txtNoAccountHistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Vui lòng đăng nhập"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/txtNoDataHistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Chưa có dữ liệu"
+        android:visibility="gone" />
 </RelativeLayout>

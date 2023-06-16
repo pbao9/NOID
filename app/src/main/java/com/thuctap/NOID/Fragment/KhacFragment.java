@@ -24,11 +24,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.GUI.Infomation;
 import com.thuctap.NOID.GUI.IntroduceApplication;
 import com.thuctap.NOID.GUI.LoginActivity;
+import com.thuctap.NOID.GUI.MainActivity;
 import com.thuctap.NOID.GUI.SplashActivity;
 import com.thuctap.NOID.R;
 
 public class KhacFragment extends Fragment {
-    private Button btnLogout, btnLogin, btnProfile, btnIntroduce, btnSetting;
+    private Button btnLogout, btnLogin, btnProfile, btnIntroduce, btnSetting,btnActive;
     private TextView txtUsername, txtTienIch;
     private FirebaseAuth auth;
     private View v1;
@@ -54,6 +55,7 @@ public class KhacFragment extends Fragment {
         btnLogin = view.findViewById(R.id.btnLogin);
         btnProfile = view.findViewById(R.id.btnProfile);
         btnIntroduce = view.findViewById(R.id.btnIntroduce);
+        btnActive = view.findViewById(R.id.btnActive);
         llnTienIch = view.findViewById(R.id.llnTienIch);
         txtTienIch = view.findViewById(R.id.txtTienIch);
 
@@ -109,12 +111,16 @@ public class KhacFragment extends Fragment {
             }
         });
 
-        btnIntroduce.setOnClickListener(new View.OnClickListener() {
+
+        btnActive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(requireContext(), IntroduceApplication.class));
+                Intent intent = new Intent(requireContext(), MainActivity.class);
+                intent.putExtra("fragmentIndex", 2);
+                startActivity(intent);
             }
         });
+
 
 
         return view;
