@@ -41,6 +41,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
     private HistoryDetailAdapter adapterHistoryDetail;
     private List<DBCart> cartList;
     private List<DBOrder> orderList;
+    private List<String> orderKeys;
 
     private Button btnDatHang;
 
@@ -55,11 +56,10 @@ public class HistoryDetailActivity extends AppCompatActivity {
 
         cartList = new ArrayList<>();
         orderList = new ArrayList<>();
+        orderKeys = new ArrayList<>();
 
         recyclerViewHistory = findViewById(R.id.reyclerViewDetailHistory);
         recyclerViewHistory.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new HistoryAdapter(orderList);
-
         adapterHistoryDetail = new HistoryDetailAdapter(cartList);
         recyclerViewHistory.setAdapter(adapterHistoryDetail);
 
@@ -72,6 +72,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
         txtTotalPriceHistory = findViewById(R.id.txtTotalPriceHistory);
         txtPriceBefore = findViewById(R.id.txtPriceBefore);
         btnDatHang = findViewById(R.id.btnDatHang);
+        txtMaDH.setVisibility(View.GONE);
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +98,47 @@ public class HistoryDetailActivity extends AppCompatActivity {
                         txtTenKH.setText(name);
                         txtDC.setText(address);
                         txtSDT.setText(phone);
+
+                        Intent intent = getIntent();
+                        String orderKey = intent.getStringExtra("orderKey");
+                        /*txtMaDH.setText(orderKey);*/
+
+                        DatabaseReference orderDetailRef = dathangDB.child(orderKey);
+                        orderDetailRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    DBOrder order = snapshot.getValue(DBOrder.class);
+                                    if (order != null) {
+                                        txtDate.setText(order.getThoigiandh());
+                                        /*Tổng tiền*/
+                                        double updatedPrice = order.getTongtiendh();
+                                        DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
+                                        String formattedPrice = decimalFormat.format(updatedPrice);
+                                        txtTotalPriceHistory.setText(formattedPrice);
+                                        /*Tiền tạm tính*/
+                                        double priceBefore = updatedPrice - 30000;
+                                        String formattedPriceBefore = decimalFormat.format(priceBefore);
+                                        txtPriceBefore.setText(formattedPriceBefore);
+
+
+                                        // Lấy danh sách sản phẩm từ đơn hàng
+                                        Map<String, DBCart> sanpham = order.getSanpham();
+                                        if (sanpham != null) {
+                                            cartList.clear();
+                                            cartList.addAll(sanpham.values());
+                                            adapterHistoryDetail.notifyDataSetChanged();
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                     }
                 }
 
@@ -106,43 +148,6 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 }
             });
         }
-
-        Intent intent = getIntent();
-        String orderKey = intent.getStringExtra("KeyDH");
-        txtMaDH.setText(orderKey);
-
-        DatabaseReference orderDetailRef = dathangDB.child(orderKey);
-        orderDetailRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    DBOrder order = snapshot.getValue(DBOrder.class);
-                    DBCart cart = snapshot.getValue(DBCart.class);
-                    if (order != null) {
-                        txtDate.setText(order.getThoigiandh());
-
-                        double updatedPrice = order.getTongtiendh();
-                        DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
-                        String formattedPrice = decimalFormat.format(updatedPrice);
-                        txtTotalPriceHistory.setText(formattedPrice);
-
-                        // Lấy danh sách sản phẩm từ đơn hàng
-                        Map<String, DBCart> sanpham = order.getSanpham();
-                        if (sanpham != null) {
-                            cartList.clear();
-                            cartList.addAll(sanpham.values());
-                            adapterHistoryDetail.notifyDataSetChanged();
-
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         txtpendingBack.setOnClickListener(new View.OnClickListener() {
             @Override

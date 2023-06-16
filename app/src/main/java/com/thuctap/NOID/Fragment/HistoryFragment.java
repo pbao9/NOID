@@ -31,12 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryFragment extends Fragment {
-    private RecyclerView recyclerView;;
+    private RecyclerView recyclerView;
+    ;
     private HistoryAdapter historyAdapter;
     private Button btnReOrder;
     private List<DBOrder> orderList;
-    private List<DBCart> cartList;
-    private List<DBProduct> productList;
+    private List<String> orderKeys;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dathangRef = database.getReference("dathang");
 
@@ -47,15 +47,15 @@ public class HistoryFragment extends Fragment {
         orderList = new ArrayList<>();
         /*cartList = new ArrayList<>();*/
 
-        historyAdapter = new HistoryAdapter(/*cartList,*/ orderList);
+        historyAdapter = new HistoryAdapter(orderList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(historyAdapter);
 
-/*        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-            String userId = currentUser.getUid();*/
-            String tinhtrang = "Đang chờ xác nhận";
-            dathangRef/*.orderByChild("makh").equalTo(userId)*/.addValueEventListener(new ValueEventListener() {
+            String userId = currentUser.getUid();
+            String tinhtrang = "Đã giao";
+            dathangRef.orderByChild("makh").equalTo(userId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     orderList.clear();
@@ -73,7 +73,7 @@ public class HistoryFragment extends Fragment {
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
-       /* }*/
+        }
         return view;
     }
 }

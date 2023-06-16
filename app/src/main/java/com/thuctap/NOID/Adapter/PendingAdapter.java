@@ -72,9 +72,9 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
 
     @NonNull
     @Override
-    public PendingAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview_history, parent, false);
-        return new PendingAdapter.MyViewHolder(view);
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -116,12 +116,8 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
             txtDateOrder = itemView.findViewById(R.id.txtDateOrder);
             txtTotalPriceOrder = itemView.findViewById(R.id.txtTotalPriceOrder);
             txtStatus = itemView.findViewById(R.id.txtStatusRecyclerView);
-            txtStatusPending = itemView.findViewById(R.id.txtStatusPending);
             txtStatusDonHang = itemView.findViewById(R.id.txtStatusRecyclerView);
-            btnXacNhan = itemView.findViewById(R.id.btnXacNhan);
             btnReOrder = itemView.findViewById(R.id.btnReOrder);
-            recyclerView = itemView.findViewById(R.id.reyclerViewDetailChiTietDonHang);
-
         }
     }
 }

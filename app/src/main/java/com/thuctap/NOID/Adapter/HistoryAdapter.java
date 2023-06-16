@@ -24,6 +24,7 @@ import com.thuctap.NOID.Database.DBCart;
 import com.thuctap.NOID.Database.DBOrder;
 import com.thuctap.NOID.Database.DBProduct;
 import com.thuctap.NOID.GUI.HistoryDetailActivity;
+import com.thuctap.NOID.GUI.PendingDetailActivity;
 import com.thuctap.NOID.R;
 
 import java.text.DecimalFormat;
@@ -31,24 +32,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
-    private static List<DBOrder> orderList;
-    private List<DBProduct> productList;
-    private List<String> orderKeys; // Danh sách để lưu trữ orderKey
+    private List<DBOrder> orderList;
+    private List<String> orderKeys;
     private FirebaseAuth auth;
-    private static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference orderDB;
 
     public HistoryAdapter(List<DBOrder> orderList) {
         this.orderList = orderList;
+        this.orderKeys = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
-        orderKeys = new ArrayList<>(); // Khởi tạo danh sách orderKeys
         orderDB = FirebaseDatabase.getInstance().getReference().child("dathang");
         orderDB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String orderKey = snapshot.getKey();
-                orderKeys.add(orderKey); // Lưu trữ orderKey vào danh sách
-                notifyDataSetChanged(); // Thông báo cập nhật dữ liệu mới
+                orderKeys.add(orderKey);
+                notifyDataSetChanged(); // Thay đổi ở đây
             }
 
             @Override
@@ -70,10 +70,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-            // Các phương thức ChildEventListener khác
         });
-
     }
 
     @NonNull
@@ -85,27 +82,23 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        if (orderList == null || orderList.size() <= position) {
+            return; // Bỏ qua nếu danh sách rỗng hoặc không có đúng vị trí
+        }
         DBOrder order = orderList.get(position);
-        /*String orderKey = orderDB.getKey();*/
-        String orderKey = orderKeys.get(position);
-        /*Hiển thị tình trạng đơn hàng*/
         holder.txtDateOrder.setText(order.getThoigiandh());
         double updatedPrice = order.getTongtiendh();
         DecimalFormat decimalFormat = new DecimalFormat("#,### đ");
         String formattedPrice = decimalFormat.format(updatedPrice);
+        /*holder.txtTotalPriceOrder.setText(order.getMadh());*/
         holder.txtTotalPriceOrder.setText(formattedPrice);
+        holder.txtStatus.setText(order.getTinhtrang());
 
-         /*Hiển thị tình trạng đơn hàng*/
-
-        if (order.getTinhtrang().equals("Đã giao")){
-            holder.txtStatus.setText("Đã giao thành công");
-        }
-        holder.txtTotalPriceOrder.setText(orderKey);
         holder.btnReOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), HistoryDetailActivity.class);
-                intent.putExtra("KeyDH", orderKey);
+                intent.putExtra("orderKey", order.getMadh());
                 v.getContext().startActivity(intent);
             }
         });
@@ -129,9 +122,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             txtStatus = itemView.findViewById(R.id.txtStatusRecyclerView);
             btnReOrder = itemView.findViewById(R.id.btnReOrder);
             recyclerView = itemView.findViewById(R.id.reyclerViewDetailHistory);
-
         }
-
     }
 }
 

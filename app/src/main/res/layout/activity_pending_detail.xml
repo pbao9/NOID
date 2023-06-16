@@ -77,6 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDate"
                 android:layout_centerInParent="true"
+                android:layout_marginBottom="15dp"
                 tools:listitem="@layout/custom_recyclerview_cart" />
 
             <TextView
@@ -203,6 +204,7 @@
 
             <TextView
                 android:id="@+id/txtTextMADH"
+                android:visibility="gone"
                 android:layout_below="@+id/view4"
                 android:layout_marginLeft="13sp"
                 android:textColor="@color/black"
@@ -212,6 +214,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/txtMaDH"
                 android:layout_below="@+id/view4"
                 android:layout_toRightOf="@id/txtTextMADH"
@@ -224,20 +227,20 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txtTextTenKH"
-                android:layout_below="@+id/txtMaDH"
+                android:layout_below="@+id/view4"
                 android:layout_marginLeft="13sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
-                android:text="Tên"
+                android:text="Họ tên"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/txtTenKH"
-                android:layout_below="@+id/txtMaDH"
-                android:layout_toRightOf="@id/txtTextMADH"
+                android:layout_below="@+id/view4"
+                android:layout_toRightOf="@id/txtTextTenKH"
                 android:layout_marginRight="10sp"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="100dp"
                 android:textColor="@color/lightblack"
                 android:layout_marginTop="10dp"
                 android:text="Nguyễn Văn A"
@@ -256,9 +259,9 @@
             <TextView
                 android:id="@+id/txtSDT"
                 android:layout_below="@+id/txtTenKH"
-                android:layout_toRightOf="@id/txtTextMADH"
+                android:layout_toRightOf="@id/txtTextSDT"
                 android:layout_marginRight="10sp"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="55dp"
                 android:textColor="@color/lightblack"
                 android:layout_marginTop="10dp"
                 android:text="0987654321"
@@ -277,9 +280,9 @@
             <TextView
                 android:id="@+id/txtDC"
                 android:layout_below="@+id/txtSDT"
-                android:layout_toRightOf="@id/txtTextMADH"
+                android:layout_toRightOf="@id/txtTextDC"
                 android:layout_marginRight="10sp"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="97dp"
                 android:textColor="@color/lightblack"
                 android:layout_marginTop="10dp"
                 android:text="390 Hoàng Văn Thụ, P.4, Q. Tân Bình"
