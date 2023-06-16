@@ -31,9 +31,12 @@ import com.thuctap.NOID.Database.DBOrder;
 import com.thuctap.NOID.R;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class PendingDetailActivity extends AppCompatActivity {
@@ -169,6 +172,11 @@ public class PendingDetailActivity extends AppCompatActivity {
                 // Tạo đối tượng Map để cập nhật trường tinhtrang
                 Map<String, Object> updateData = new HashMap<>();
                 updateData.put("tinhtrang", "Đã giao");
+                // Lấy thời gian hiện tại
+                String currentTime = getCurrentTime();
+
+                // Cập nhật trạng thái và thời gian
+                updateData.put("thoigiannh", currentTime);
 
                 // Sử dụng DatabaseReference để cập nhật dữ liệu
                 DatabaseReference orderRef = dathangDB.child(orderKey);
@@ -197,6 +205,10 @@ public class PendingDetailActivity extends AppCompatActivity {
                         });
             }
         });
+    }
 
+    private String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }
