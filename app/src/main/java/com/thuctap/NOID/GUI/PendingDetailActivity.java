@@ -2,10 +2,15 @@ package com.thuctap.NOID.GUI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -22,8 +27,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.thuctap.NOID.Adapter.HistoryAdapter;
-import com.thuctap.NOID.Adapter.HistoryDetailAdapter;
 import com.thuctap.NOID.Adapter.PendingAdapter;
 import com.thuctap.NOID.Adapter.PendingDetailAdapter;
 import com.thuctap.NOID.Database.DBCart;
@@ -33,6 +36,7 @@ import com.thuctap.NOID.R;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +58,8 @@ public class PendingDetailActivity extends AppCompatActivity {
     private List<String> orderKeys;
 
     private Button btnXacNhan;
+
+    private final String CHANNEL_ID = "PENDING";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +84,6 @@ public class PendingDetailActivity extends AppCompatActivity {
         txtMaDH = findViewById(R.id.txtMaDH);
         txtTenKH = findViewById(R.id.txtTenKH);
         txtSDT = findViewById(R.id.txtSDT);
-        txtNodata = findViewById(R.id.txtNodata);
         txtDC = findViewById(R.id.txtDC);
         txtDate = findViewById(R.id.txtDate);
         txtTotalPriceHistory = findViewById(R.id.txtTotalPriceHistory);
@@ -178,21 +183,16 @@ public class PendingDetailActivity extends AppCompatActivity {
                 // Cập nhật trạng thái và thời gian
                 updateData.put("thoigiannh", currentTime);
 
-                // Sử dụng DatabaseReference để cập nhật dữ liệu
                 DatabaseReference orderRef = dathangDB.child(orderKey);
                 orderRef.updateChildren(updateData)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 // Cập nhật thành công
-                                Toast.makeText(PendingDetailActivity.this, "Đã cập nhật trạng thái thành 'Đã giao'", Toast.LENGTH_SHORT).show();
-
-                                // Chuyển đến MainActivity (hoặc màn hình khác) sau khi cập nhật thành công
+                                Toast.makeText(PendingDetailActivity.this, "Chúc bạn có phút giây tận hưởng đồ ăn ngon miệng ^^!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(PendingDetailActivity.this, MainActivity.class);
                                 intent.putExtra("fragmentIndex", 2);
                                 startActivity(intent);
-
-                                // Kết thúc Activity hiện tại
                                 finish();
                             }
                         })
@@ -205,10 +205,14 @@ public class PendingDetailActivity extends AppCompatActivity {
                         });
             }
         });
+
+
     }
+
 
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         return sdf.format(new Date());
     }
+
 }

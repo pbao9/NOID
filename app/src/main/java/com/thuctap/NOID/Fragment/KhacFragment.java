@@ -123,6 +123,16 @@ public class KhacFragment extends Fragment {
 
 
 
+        btnIntroduce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireContext(), IntroduceApplication.class));
+            }
+        });
+
+
+
+
         return view;
     }
 }
