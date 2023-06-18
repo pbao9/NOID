@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.Database.DBUser;
 import com.thuctap.NOID.R;
 
+import java.util.Random;
+
 public class RegisterActivity extends AppCompatActivity {
     /* Authentication */
     private FirebaseAuth auth;
@@ -43,6 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         addView();
+
+
 
         /* Nút đăng kí xử lý đăng ký tài khoản khách hàng */
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +128,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
         /* Kết thúc TextView đăng nhập */
     }
+
+
 
     private void addView() {
         auth = FirebaseAuth.getInstance();

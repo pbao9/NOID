@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class CartActivity extends AppCompatActivity {
     private DatabaseReference database;
@@ -249,11 +250,13 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
+
     private void createOrder() {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
             String orderId = database.child("dathang").push().getKey();
+
             String currentTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
             String note = edtNote.getText().toString();
             int totalAmount = calculateTotalAmount();

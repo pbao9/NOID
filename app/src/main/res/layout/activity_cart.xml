@@ -379,6 +379,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+
         <TextView
             android:id="@+id/text2"
             android:layout_width="290dp"
