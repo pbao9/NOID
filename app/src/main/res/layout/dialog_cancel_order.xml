@@ -18,6 +18,7 @@
 
 
     </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
                 android:drawablePadding="10dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Xoá tài khoản"
+                android:text="Huỷ đơn hàng"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -48,8 +49,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:padding="1dp"
-                android:text="Thật buồn khi biết bạn sắp xoá tài khoản NOID. Tất cả thông tin cá nhân của bạn như số điện thoại, địa chỉ, email.. đều sẽ được xoá hết để bảo mật thông tin cá nhân của người dùng." />
+                android:text="Không biết bạn đã gặp vấn đề gì với đơn hàng của mình nhỉ? Vui lòng liên hệ: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="8dp"
+                android:text="0987654321 - Quản lý NOID" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,11 +67,11 @@
                 android:text="Chúng mình mong bạn đã có trải nghiệm tuyệt vời khi sử dụng dịch vụ của chúng mình ^^." />
 
             <CheckBox
-                android:id="@+id/chkDeleteAccount"
+                android:id="@+id/chkCancelOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="35sp"
                 android:layout_marginLeft="5dp"
-                android:text="Xác nhận xoá tài khoản" />
+                android:text="Xác nhận huỷ đơn hàng" />
 
             <Button
                 android:id="@+id/btnConfirm"

@@ -1,6 +1,7 @@
 package com.thuctap.NOID.GUI;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,11 +11,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +61,7 @@ public class PendingDetailActivity extends AppCompatActivity {
     private List<DBOrder> orderList;
     private List<String> orderKeys;
 
-    private Button btnXacNhan;
+    private Button btnXacNhan, btnHuyDon;
 
     private final String CHANNEL_ID = "PENDING";
 
@@ -89,6 +93,7 @@ public class PendingDetailActivity extends AppCompatActivity {
         txtTotalPriceHistory = findViewById(R.id.txtTotalPriceHistory);
         txtPriceBefore = findViewById(R.id.txtPriceBefore);
         btnXacNhan = findViewById(R.id.btnXacNhan);
+        btnHuyDon = findViewById(R.id.btnXoaDH);
         txtMaDH.setVisibility(View.GONE);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
@@ -122,6 +127,15 @@ public class PendingDetailActivity extends AppCompatActivity {
                                         txtStatusPending.setText(order.getTinhtrang());
                                         if (order.getTinhtrang().equals("Đang giao")) {
                                             btnXacNhan.setVisibility(View.VISIBLE);
+                                        }
+                                        if (order.getTinhtrang().equals("Đang chờ xác nhận")) {
+                                            /*Add btn đặt hàng vào đây*/
+                                            btnHuyDon.setVisibility(View.VISIBLE);
+                                        }
+                                        if (order.getTinhtrang().equals("Đã huỷ")) {
+                                            /*Add btn đặt hàng vào đây*/
+                                            btnHuyDon.setVisibility(View.GONE);
+                                            btnXacNhan.setVisibility(View.GONE);
                                         }
                                         /*Tổng tiền*/
                                         double updatedPrice = order.getTongtiendh();
@@ -167,6 +181,7 @@ public class PendingDetailActivity extends AppCompatActivity {
             }
         });
 
+
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,6 +221,13 @@ public class PendingDetailActivity extends AppCompatActivity {
             }
         });
 
+        btnHuyDon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelOrder();
+            }
+        });
+
 
     }
 
@@ -215,4 +237,55 @@ public class PendingDetailActivity extends AppCompatActivity {
         return sdf.format(new Date());
     }
 
+    private void cancelOrder() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(PendingDetailActivity.this);
+        View dialogview = getLayoutInflater().inflate(R.layout.dialog_cancel_order, null);
+        CheckBox chkRemove = dialogview.findViewById(R.id.chkCancelOrder);
+        Button btnConfirm = dialogview.findViewById(R.id.btnConfirm);
+        builder.setView(dialogview);
+        AlertDialog dialog = builder.create();
+
+        chkRemove.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                btnConfirm.setEnabled(isChecked);
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                String orderKey = intent.getStringExtra("orderKey");
+
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("tinhtrang", "Đã huỷ");
+
+                DatabaseReference orderRef = dathangDB.child(orderKey);
+                orderRef.updateChildren(updateData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Cập nhật thành công
+                                Toast.makeText(PendingDetailActivity.this, "Đã huỷ đơn hàng thành công ^^!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(PendingDetailActivity.this, MainActivity.class);
+                                intent.putExtra("fragmentIndex", 2);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Cập nhật thất bại
+                                Toast.makeText(PendingDetailActivity.this, "Có lỗi xảy ra. Vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        dialog.show();
+    }
 }

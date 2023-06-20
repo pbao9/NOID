@@ -1,15 +1,20 @@
 package com.thuctap.NOID.GUI;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -129,6 +134,8 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createOrder();
+                Toast.makeText(CartActivity.this, "Đã đặt hàng thành công! Vui lòng chờ ít phút để đơn hàng được xác nhận!", Toast.LENGTH_SHORT).show();
+                loadCart();
             }
         });
     }
@@ -224,7 +231,8 @@ public class CartActivity extends AppCompatActivity {
         btnOrder.setText("Đặt Hàng " + "(" + totalWithExtraFeeText + ")");
     }
 
-    private void removeCart() {
+
+    private void loadCart() {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -234,9 +242,6 @@ public class CartActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            // Xóa thành công
-                            // Cập nhật hiển thị giỏ hàng sau khi xóa
-                            Toast.makeText(CartActivity.this, "Xoá thành công giỏ hàng, vui lòng kiểm tra!", Toast.LENGTH_SHORT).show();
                             displayCartItems();
                         }
                     })
@@ -248,6 +253,63 @@ public class CartActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void removeCart() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+        View dialogview = getLayoutInflater().inflate(R.layout.dialog_remove_cart, null);
+        CheckBox chkRemove = dialogview.findViewById(R.id.chkRemoveCart);
+        Button btnConfirm = dialogview.findViewById(R.id.btnConfirm);
+        builder.setView(dialogview);
+        AlertDialog dialog = builder.create();
+
+        chkRemove.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                btnConfirm.setEnabled(isChecked);
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser currentUser = auth.getCurrentUser();
+                if (currentUser != null) {
+                    String userId = currentUser.getUid();
+                    DatabaseReference ordersRef = database.child("giohang");
+
+                    ordersRef.child(userId).removeValue()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(CartActivity.this, "Đã xoá giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(new Intent(CartActivity.this, SplashActivity.class));
+                                            finish();
+                                        }
+                                    }, 1500);
+                                    displayCartItems();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Xóa thất bại
+                                    // Xử lý lỗi
+                                }
+                            });
+
+                }
+            }
+
+        });
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        dialog.show();
     }
 
 

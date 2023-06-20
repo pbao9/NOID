@@ -62,6 +62,7 @@ public class PendingFragment extends Fragment {
             String userId = currentUser.getUid();
             String tinhtrang = "Đang chờ xác nhận";
             String tinhtrang1 = "Đang giao";
+            String tinhtrang2 = "Đã huỷ";
             txtNoAccount.setVisibility(View.GONE);
             dathangRef.orderByChild("makh").equalTo(userId).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -70,7 +71,7 @@ public class PendingFragment extends Fragment {
                     for (DataSnapshot orderSnapshot : snapshot.getChildren()) {
                         DBOrder order = orderSnapshot.getValue(DBOrder.class);
 
-                        if (order.getTinhtrang().equals(tinhtrang) || order.getTinhtrang().equals(tinhtrang1)) {
+                        if (order.getTinhtrang().equals(tinhtrang) || order.getTinhtrang().equals(tinhtrang1) || order.getTinhtrang().equals(tinhtrang2)) {
                             orderList.add(order);
                         }
                     }

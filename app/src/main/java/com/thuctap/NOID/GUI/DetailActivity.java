@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -40,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
     private Button btnTotal, btnUp, btnDown;
     private DatabaseReference database;
     private FirebaseAuth auth;
+    private RelativeLayout rlvPay;
     private ImageView imgProductDetail;
     private EditText edtNote;
     private int count = 0;

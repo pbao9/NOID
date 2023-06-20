@@ -310,6 +310,17 @@
             android:text="Xác nhận đã nhận Hàng"
             android:visibility="gone"
             android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btnXoaDH"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@drawable/button_rounded_remove"
+            android:text="Huỷ đơn hàng"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textAllCaps="false" />
 
     </RelativeLayout>
 </RelativeLayout>
