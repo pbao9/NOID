@@ -192,6 +192,7 @@
                     android:orientation="horizontal">
                     <!-- CardView 1 Sản phẩm bán chạy -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewProduct1"
                         android:layout_width="120dp"
                         android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
@@ -241,6 +242,7 @@
                     <!---->
                     <!-- CardView 1 Sản phẩm bán chạy -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewProduct2"
                         android:layout_width="120dp"
                         android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
@@ -290,6 +292,7 @@
                     <!---->
                     <!-- CardView 1 Sản phẩm bán chạy -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewProduct3"
                         android:layout_width="120dp"
                         android:layout_height="160dp"
                         android:layout_marginLeft="10dp"
@@ -339,12 +342,12 @@
                     <!---->
                     <!-- CardView 1 Sản phẩm bán chạy -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewProduct4"
                         android:layout_width="120dp"
                         android:layout_height="160dp"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="5dp">
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

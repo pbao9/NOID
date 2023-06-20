@@ -29,13 +29,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.GUI.CartActivity;
 import com.thuctap.NOID.GUI.LoginActivity;
+import com.thuctap.NOID.GUI.MainActivity;
 import com.thuctap.NOID.R;
 
 import java.util.ArrayList;
 
 public class TrangChuFragment extends Fragment {
 
-    private CardView cardViewLogin;
+    private CardView cardViewLogin,cardViewProduct1, cardViewProduct2, cardViewProduct3, cardViewProduct4;
     private FloatingActionButton btnCart;
     private Button btnLogin;
     private TextView txtUsername;
@@ -63,6 +64,49 @@ public class TrangChuFragment extends Fragment {
         btnCart = view.findViewById(R.id.btnCart);
         lln1 = view.findViewById(R.id.lln1);
         lln2 = view.findViewById(R.id.lln2);
+        cardViewProduct1 = view.findViewById(R.id.cardViewProduct1);
+        cardViewProduct2 = view.findViewById(R.id.cardViewProduct2);
+        cardViewProduct3 = view.findViewById(R.id.cardViewProduct3);
+        cardViewProduct4 = view.findViewById(R.id.cardViewProduct4);
+
+
+        /* Sự kiện nhấn vào Sản phẩm bán chạy */
+        cardViewProduct1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), MainActivity.class);
+                intent.putExtra("fragmentIndex", 1);
+                startActivity(intent);
+            }
+        });
+
+        cardViewProduct2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), MainActivity.class);
+                intent.putExtra("fragmentIndex", 1);
+                startActivity(intent);
+            }
+        });
+        cardViewProduct3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), MainActivity.class);
+                intent.putExtra("fragmentIndex", 1);
+                startActivity(intent);
+            }
+        });
+        cardViewProduct4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), MainActivity.class);
+                intent.putExtra("fragmentIndex", 1);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         /* Tự động chuyển hình ảnh */
         ImageSlider imageSlider = view.findViewById(R.id.imgSlider);
@@ -81,22 +125,22 @@ public class TrangChuFragment extends Fragment {
             public void onItemSelected(int i) {
                 switch (i) {
                     case 0:
-                        Toast.makeText(requireContext(), "Hình ảnh 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Chương trình khuyến mãi đang trong thời gian phát tiển! - 1", Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
-                        Toast.makeText(requireContext(), "Hình ảnh 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Chương trình khuyến mã đã hết vui lòng cập nhật phiên bản mới! - 2", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
-                        Toast.makeText(requireContext(), "Hình ảnh 3", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Sản phẩm này đang cháy hàng, không còn để phục vụ! - 3", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
-                        Toast.makeText(requireContext(), "Hình ảnh 4", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Quảng cáo chỉ mang tính chất minh họa - 4", Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
-                        Toast.makeText(requireContext(), "Hình ảnh 5", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Sản phẩm này tạm hết hàng - 5", Toast.LENGTH_SHORT).show();
                         break;
                     case 5:
-                        Toast.makeText(requireContext(), "Hình ảnh 6", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Chương trình khuyến mãi không tồn tại trên cửa hàng - 6", Toast.LENGTH_SHORT).show();
                         break;
 
                 }
