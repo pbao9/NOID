@@ -332,8 +332,7 @@ public class CartActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             // Đặt hàng thành công
                             // Xóa giỏ hàng sau khi đã đặt hàng
-                            removeCart();
-                            Toast.makeText(CartActivity.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                            loadCart();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
