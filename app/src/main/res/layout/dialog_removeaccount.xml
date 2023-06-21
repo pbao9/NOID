@@ -39,7 +39,7 @@
                 android:drawablePadding="10dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Xoá tài khoản"
+                android:text="Xoá Tài Khoản"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />

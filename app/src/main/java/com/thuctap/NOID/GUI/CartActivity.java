@@ -282,14 +282,7 @@ public class CartActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(CartActivity.this, "Đã xoá giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(new Intent(CartActivity.this, SplashActivity.class));
-                                            finish();
-                                        }
-                                    }, 1500);
+                                    dialog.hide();
                                     displayCartItems();
                                 }
                             })

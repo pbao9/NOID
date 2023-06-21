@@ -185,6 +185,39 @@ public class PendingDetailActivity extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finishOrder();
+            }
+        });
+
+        btnHuyDon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelOrder();
+            }
+        });
+
+
+    }
+
+    private void finishOrder() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(PendingDetailActivity.this);
+        View dialogview = getLayoutInflater().inflate(R.layout.dialog_confirm_order, null);
+        CheckBox chkFinal = dialogview.findViewById(R.id.chkFinalOrder);
+        Button btnConfirm = dialogview.findViewById(R.id.btnFinishOrder);
+        builder.setView(dialogview);
+        AlertDialog dialog = builder.create();
+
+        chkFinal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                btnConfirm.setEnabled(isChecked);
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 // Lấy orderKey từ intent
                 Intent intent = getIntent();
                 String orderKey = intent.getStringExtra("orderKey");
@@ -206,9 +239,10 @@ public class PendingDetailActivity extends AppCompatActivity {
                                 // Cập nhật thành công
                                 Toast.makeText(PendingDetailActivity.this, "Chúc bạn có phút giây tận hưởng đồ ăn ngon miệng ^^!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(PendingDetailActivity.this, MainActivity.class);
-                                intent.putExtra("fragmentIndex", 2);
+                                intent.putExtra("fragmentIndex", 1);
                                 startActivity(intent);
                                 finish();
+                                dialog.hide();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -220,13 +254,10 @@ public class PendingDetailActivity extends AppCompatActivity {
                         });
             }
         });
-
-        btnHuyDon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelOrder();
-            }
-        });
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        dialog.show();
 
 
     }
