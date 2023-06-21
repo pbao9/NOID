@@ -49,6 +49,7 @@ public class PendingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pending, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerViewPending);
+        recyclerView = view.findViewById(R.id.recyclerViewPending);
         txtNoAccount = view.findViewById(R.id.txtNoAccountPending);
         txtNoData = view.findViewById(R.id.txtNoDataPending);
         orderList = new ArrayList<>();
@@ -62,7 +63,7 @@ public class PendingFragment extends Fragment {
             String userId = currentUser.getUid();
             String tinhtrang = "Đang chờ xác nhận";
             String tinhtrang1 = "Đang giao";
-            String tinhtrang2 = "Đã huỷ";
+            String tinhtrang2 = "Đã hủy";
             txtNoAccount.setVisibility(View.GONE);
             dathangRef.orderByChild("makh").equalTo(userId).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -74,6 +75,7 @@ public class PendingFragment extends Fragment {
                         if (order.getTinhtrang().equals(tinhtrang) || order.getTinhtrang().equals(tinhtrang1) || order.getTinhtrang().equals(tinhtrang2)) {
                             orderList.add(order);
                         }
+
                     }
                     pendingAdapter.notifyDataSetChanged();
                     if (orderList.isEmpty()) {

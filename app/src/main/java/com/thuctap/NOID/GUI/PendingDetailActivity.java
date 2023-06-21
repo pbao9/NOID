@@ -132,7 +132,7 @@ public class PendingDetailActivity extends AppCompatActivity {
                                             /*Add btn đặt hàng vào đây*/
                                             btnHuyDon.setVisibility(View.VISIBLE);
                                         }
-                                        if (order.getTinhtrang().equals("Đã huỷ")) {
+                                        if (order.getTinhtrang().equals("Đã hủy")) {
                                             /*Add btn đặt hàng vào đây*/
                                             btnHuyDon.setVisibility(View.GONE);
                                             btnXacNhan.setVisibility(View.GONE);
@@ -259,7 +259,7 @@ public class PendingDetailActivity extends AppCompatActivity {
                 String orderKey = intent.getStringExtra("orderKey");
 
                 Map<String, Object> updateData = new HashMap<>();
-                updateData.put("tinhtrang", "Đã huỷ");
+                updateData.put("tinhtrang", "Đã hủy");
 
                 DatabaseReference orderRef = dathangDB.child(orderKey);
                 orderRef.updateChildren(updateData)
@@ -267,7 +267,7 @@ public class PendingDetailActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 // Cập nhật thành công
-                                Toast.makeText(PendingDetailActivity.this, "Đã huỷ đơn hàng thành công ^^!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PendingDetailActivity.this, "Đã hủy đơn hàng thành công ^^!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(PendingDetailActivity.this, MainActivity.class);
                                 intent.putExtra("fragmentIndex", 2);
                                 startActivity(intent);
