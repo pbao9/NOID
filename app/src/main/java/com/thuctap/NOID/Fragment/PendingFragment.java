@@ -3,6 +3,7 @@ package com.thuctap.NOID.Fragment;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +39,7 @@ import java.util.List;
 public class PendingFragment extends Fragment {
     private RecyclerView recyclerView;
     private PendingAdapter pendingAdapter;
+
     private TextView txtNoAccount, txtNoData;
     private List<DBOrder> orderList;
     private List<String> orderKeys;
@@ -49,8 +51,8 @@ public class PendingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pending, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerViewPending);
-        recyclerView = view.findViewById(R.id.recyclerViewPending);
         txtNoAccount = view.findViewById(R.id.txtNoAccountPending);
+
         txtNoData = view.findViewById(R.id.txtNoDataPending);
         orderList = new ArrayList<>();
 

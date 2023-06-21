@@ -134,8 +134,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createOrder();
-                Toast.makeText(CartActivity.this, "Đã đặt hàng thành công! Vui lòng chờ ít phút để đơn hàng được xác nhận!", Toast.LENGTH_SHORT).show();
-                loadCart();
+
             }
         });
     }
@@ -314,35 +313,61 @@ public class CartActivity extends AppCompatActivity {
 
 
     private void createOrder() {
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if (currentUser != null) {
-            String userId = currentUser.getUid();
-            String orderId = database.child("dathang").push().getKey();
+        AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+        View dialogview = getLayoutInflater().inflate(R.layout.dialog_cart_confirm, null);
+        CheckBox chkRemove = dialogview.findViewById(R.id.chkConfirmOrder);
+        Button btnCreateOrder = dialogview.findViewById(R.id.btnConfirmOrder);
+        builder.setView(dialogview);
+        AlertDialog dialog = builder.create();
 
-            String currentTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
-            String note = edtNote.getText().toString();
-            int totalAmount = calculateTotalAmount();
-            // Tạo một đối tượng DBOrder mới từ dữ liệu hiện tại
-            DBOrder dbOrder = new DBOrder(userId, orderId, currentTime, note, "Đang chờ xác nhận", cartItems.size(), totalAmount, convertCartItemsToMap(cartItems));
-            dbOrder.setTongtiendh(totalAmount);
-            // Gửi đối tượng DBOrder đến nhánh "dathang"
-            database.child("dathang").child(orderId).setValue(dbOrder)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            // Đặt hàng thành công
-                            // Xóa giỏ hàng sau khi đã đặt hàng
-                            loadCart();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // Xử lý lỗi khi đặt hàng thất bại
-                            Toast.makeText(CartActivity.this, "Đặt hàng thất bại. Vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+        chkRemove.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                btnCreateOrder.setEnabled(isChecked);
+            }
+        });
+
+        btnCreateOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser currentUser = auth.getCurrentUser();
+                if (currentUser != null) {
+                    String userId = currentUser.getUid();
+                    String orderId = database.child("dathang").push().getKey();
+
+                    String currentTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
+                    String note = edtNote.getText().toString();
+                    int totalAmount = calculateTotalAmount();
+                    // Tạo một đối tượng DBOrder mới từ dữ liệu hiện tại
+                    DBOrder dbOrder = new DBOrder(userId, orderId, currentTime, note, "Đang chờ xác nhận", cartItems.size(), totalAmount, convertCartItemsToMap(cartItems));
+                    dbOrder.setTongtiendh(totalAmount);
+                    // Gửi đối tượng DBOrder đến nhánh "dathang"
+                    database.child("dathang").child(orderId).setValue(dbOrder)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Đặt hàng thành công
+                                    // Xóa giỏ hàng sau khi đã đặt hàng
+                                    Toast.makeText(CartActivity.this, "Đã đặt hàng thành công! Vui lòng chờ ít phút để đơn hàng được xác nhận!", Toast.LENGTH_SHORT).show();
+                                    loadCart();
+                                    dialog.hide();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Xử lý lỗi khi đặt hàng thất bại
+                                    Toast.makeText(CartActivity.this, "Đặt hàng thất bại. Vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+        });
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
+        dialog.show();
+
     }
 
     private Map<String, DBCart> convertCartItemsToMap(ArrayList<DBCart> cartItems) {

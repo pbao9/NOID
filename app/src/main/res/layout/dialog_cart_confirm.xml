@@ -40,7 +40,7 @@
                 android:drawablePadding="10dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Xoá giỏ hàng"
+                android:text="Xác Nhận Đơn Hàng"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -49,16 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Không biết bạn đã gặp vấn đề gì với đơn hàng của mình nhỉ? Vui lòng liên hệ: " />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_margin="8dp"
-                android:text="0987654321 - Quản lý NOID" />
+                android:text="Kiểm tra đơn hàng và bấm vào xác nhận đặt hàng để đồ ăn có thể đến với bạn nhanh chóng ./." />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,14 +58,14 @@
                 android:text="Chúng mình mong bạn đã có trải nghiệm tuyệt vời khi sử dụng dịch vụ của chúng mình ^^." />
 
             <CheckBox
-                android:id="@+id/chkRemoveCart"
+                android:id="@+id/chkConfirmOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="35sp"
                 android:layout_marginLeft="5dp"
-                android:text="Xác nhận xoá giỏ hàng" />
+                android:text="Xác nhận đặt hàng" />
 
             <Button
-                android:id="@+id/btnConfirm"
+                android:id="@+id/btnConfirmOrder"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="15dp"

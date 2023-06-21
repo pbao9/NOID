@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thuctap.NOID.Database.DBCart;
@@ -23,6 +24,7 @@ public class PendingDetailAdapter extends RecyclerView.Adapter<PendingDetailAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtProductCartCountPending, txtProductCartNamePending, txtProductCartPricePending, txtPriceBeforePending;
+        public CardView cardViewPending;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -30,6 +32,7 @@ public class PendingDetailAdapter extends RecyclerView.Adapter<PendingDetailAdap
             txtProductCartNamePending = itemView.findViewById(R.id.txtProductCartName);
             txtProductCartPricePending = itemView.findViewById(R.id.txtProductCartPrice);
             txtPriceBeforePending = itemView.findViewById(R.id.txtPriceBefore);
+            cardViewPending = itemView.findViewById(R.id.cardViewPending);
         }
     }
 

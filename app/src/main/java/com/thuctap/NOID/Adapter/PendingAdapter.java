@@ -1,6 +1,7 @@
 package com.thuctap.NOID.Adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -99,6 +101,18 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
                 v.getContext().startActivity(intent);
             }
         });
+        /* Màu nền của cardView khi có các trạng thái khác nhau */
+        switch (order.getTinhtrang()){
+            default:
+                holder.cardViewPending.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+                break;
+            case "Đang giao":
+                holder.cardViewPending.setCardBackgroundColor(Color.parseColor("#FFF48D"));
+                break;
+            case "Đã hủy":
+                holder.cardViewPending.setCardBackgroundColor(Color.parseColor("#FF9191"));
+                break;
+        }
     }
 
     @Override
@@ -110,6 +124,7 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
         TextView txtDateOrder, txtTotalPriceOrder, txtStatus, txtStatusPending, txtStatusDonHang;
         Button btnReOrder, btnXacNhan;
         RecyclerView recyclerView;
+        public CardView cardViewPending;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,6 +133,7 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
             txtStatus = itemView.findViewById(R.id.txtStatusRecyclerView);
             txtStatusDonHang = itemView.findViewById(R.id.txtStatusRecyclerView);
             btnReOrder = itemView.findViewById(R.id.btnReOrder);
+            cardViewPending = itemView.findViewById(R.id.cardViewPending);
         }
     }
 }
