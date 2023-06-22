@@ -35,6 +35,7 @@ import com.thuctap.NOID.Adapter.CartAdapter;
 import com.thuctap.NOID.Adapter.HistoryAdapter;
 import com.thuctap.NOID.Database.DBCart;
 import com.thuctap.NOID.Database.DBOrder;
+import com.thuctap.NOID.Database.DBUser;
 import com.thuctap.NOID.R;
 
 import java.text.DecimalFormat;
@@ -105,6 +106,7 @@ public class CartActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         txtEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +136,6 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createOrder();
-
             }
         });
     }
@@ -253,6 +254,7 @@ public class CartActivity extends AppCompatActivity {
                     });
         }
     }
+
 
     private void removeCart() {
         AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);

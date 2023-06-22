@@ -802,14 +802,4 @@
             <!-- Kết thúc Ưu đãi -->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnCart"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/green"
-        app:borderWidth="0dp"
-        android:src="@drawable/ic_cart"
-        android:layout_margin="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </RelativeLayout>

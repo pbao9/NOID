@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -102,6 +103,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
                 v.getContext().startActivity(intent);
             }
         });
+        holder.cardViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), HistoryDetailActivity.class);
+                intent.putExtra("orderKey", order.getMadh());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -114,6 +123,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         TextView txtDateOrder, txtTotalPriceOrder, txtStatus;
         Button btnReOrder;
         RecyclerView recyclerView;
+        public CardView cardViewHistory;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -122,6 +132,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             txtStatus = itemView.findViewById(R.id.txtStatusRecyclerView);
             btnReOrder = itemView.findViewById(R.id.btnReOrder);
             recyclerView = itemView.findViewById(R.id.reyclerViewDetailHistory);
+            cardViewHistory = itemView.findViewById(R.id.cardViewPending);
         }
     }
 }

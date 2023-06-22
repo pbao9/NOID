@@ -37,7 +37,6 @@ import java.util.ArrayList;
 public class TrangChuFragment extends Fragment {
 
     private CardView cardViewLogin,cardViewProduct1, cardViewProduct2, cardViewProduct3, cardViewProduct4;
-    private FloatingActionButton btnCart;
     private Button btnLogin;
     private TextView txtUsername;
     private FirebaseAuth auth;
@@ -61,7 +60,6 @@ public class TrangChuFragment extends Fragment {
         cardViewLogin = view.findViewById(R.id.cardViewLogin);
         txtUsername = view.findViewById(R.id.txtUsername);
         btnLogin = view.findViewById(R.id.btnLogin);
-        btnCart = view.findViewById(R.id.btnCart);
         lln1 = view.findViewById(R.id.lln1);
         lln2 = view.findViewById(R.id.lln2);
         cardViewProduct1 = view.findViewById(R.id.cardViewProduct1);
@@ -156,12 +154,6 @@ public class TrangChuFragment extends Fragment {
             }
         });
 
-        btnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(requireContext(), CartActivity.class));
-            }
-        });
         /* Sự kiện Menu bottom Nav */
         /* Authentication */
         auth = FirebaseAuth.getInstance();
@@ -178,7 +170,6 @@ public class TrangChuFragment extends Fragment {
                         txtUsername.setText("Chào bạn " + userName);
                         lln1.setVisibility(View.GONE);
                         lln2.setVisibility(View.VISIBLE);
-                        btnCart.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -190,7 +181,6 @@ public class TrangChuFragment extends Fragment {
         } else {
             lln1.setVisibility(View.VISIBLE);
             lln2.setVisibility(View.GONE);
-            btnCart.setVisibility(View.GONE);
         }
         return view;
     }

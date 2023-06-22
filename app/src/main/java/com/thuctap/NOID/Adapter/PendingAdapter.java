@@ -101,6 +101,15 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
                 v.getContext().startActivity(intent);
             }
         });
+
+        holder.cardViewPending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PendingDetailActivity.class);
+                intent.putExtra("orderKey", order.getMadh());
+                v.getContext().startActivity(intent);
+            }
+        });
         /* Màu nền của cardView khi có các trạng thái khác nhau */
         switch (order.getTinhtrang()){
             default:
