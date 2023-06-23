@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thuctap.NOID.GUI.CartActivity;
+import com.thuctap.NOID.GUI.Infomation;
 import com.thuctap.NOID.GUI.LoginActivity;
 import com.thuctap.NOID.GUI.MainActivity;
 import com.thuctap.NOID.R;
@@ -151,6 +152,13 @@ public class TrangChuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(requireContext(), LoginActivity.class));
+            }
+        });
+
+        lln2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireContext(), Infomation.class));
             }
         });
 
